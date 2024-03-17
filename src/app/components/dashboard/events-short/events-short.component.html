@@ -10,8 +10,8 @@
                 
             <div class="col-auto pb-3">
                 <div class="calendar">
-                    <span class="calendar-month">{{event.month}}</span>
-                    <span class="calendar-day">{{event.day}}</span>
+                    <span class="calendar-month">{{getShortMonth(event.date)}}</span>
+                    <span class="calendar-day">{{event.date.getDate()}}</span>
                 </div>
             </div>
             <div class="col">

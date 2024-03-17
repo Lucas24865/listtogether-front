@@ -14,10 +14,4 @@ import { TypeViewComponent } from './components/dashboard/type-view/type-view.co
 })
 export class AppComponent {
   title = 'list-together';
-  isViewGroup : boolean = true;
-
-  changeView() {
-    this.isViewGroup = !this.isViewGroup
-    console.log(this.isViewGroup)
-  }
 }

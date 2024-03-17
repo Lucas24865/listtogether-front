@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IEvent } from '../../../models/event-short';
 import { MiniUserComponent } from '../../utils/mini-user/mini-user.component';
+import { IDashItem } from '../../../models/dash-item';
 
 @Component({
   selector: 'app-events-short',
@@ -10,10 +10,10 @@ import { MiniUserComponent } from '../../utils/mini-user/mini-user.component';
   imports: [MiniUserComponent],
 })
 export class EventsShortComponent {
-  events: IEvent[] = [
+  events: IDashItem[] = [
     {
-      month: 'Mar',
-      day: '26',
+      date: new Date('2024-05-26'),
+      added: new Date(),
       title: 'Cumple Sofi',
       desc: 'En casa de la tia, no olvidar llevar todo',
       users: [
@@ -24,10 +24,18 @@ export class EventsShortComponent {
           color: 'red',
         },
       ],
+      addedBy: {
+        picture: '',
+        name: 'Admin',
+        doubleSize: false,
+        color: 'blue',
+      },
+      total: 10,
+      got: 5,
     },
     {
-      month: 'Abr',
-      day: '29',
+      date: new Date('2024-04-29'),
+      added: new Date(),
       title: 'Cumple Mati',
       desc: 'En casa del tio, no olvidar llevar todo',
       users: [
@@ -38,6 +46,18 @@ export class EventsShortComponent {
           color: 'green',
         },
       ],
+      addedBy: {
+        picture: '',
+        name: 'Admin',
+        doubleSize: false,
+        color: 'blue',
+      },
+      total: 20,
+      got: 15,
     },
   ];
+  getShortMonth(date: Date) :string{
+    return new Intl.DateTimeFormat('es-ES', { month: 'short' }).format(date);
+  }
+
 }

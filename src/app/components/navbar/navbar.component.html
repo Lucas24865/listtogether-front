@@ -1,7 +1,7 @@
   <!-- place navbar here -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">ListTogether</a>
+        <a class="navbar-brand">ListTogether</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -10,23 +10,23 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId"> 
              <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page">Home
+                    <a class="nav-link active"  aria-current="page">Home
                         <span class="visually-hidden">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Listas</a>
+                    <a class="nav-link">Listas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Grupos</a>
+                    <a class="nav-link" >Grupos</a>
                 </li>
             </ul>
             <ul class="navbar-nav me-4 mt-2 mt-lg-0">
-                <li class="nav-item d-flex" href="#">
-                    <a class="nav-link" href="#" [ngClass]="{'d-none': isViewGroup}"
+                <li class="nav-item d-flex" >
+                    <a class="nav-link"  [ngClass]="{'d-none': isViewGroup}"
                      (click)="changeView()">
                         <i class="fa-solid fa-user-group"></i>
                     </a>
-                    <a class="nav-link" href="#" [ngClass]="{'d-none': !isViewGroup}"
+                    <a class="nav-link" [ngClass]="{'d-none': !isViewGroup}"
                     (click)="changeView()">
                         <i class="fa-solid fa-list"></i>
                     </a>
