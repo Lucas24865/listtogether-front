@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IList } from '../../../models/list';
 
 @Component({
   selector: 'app-shopping-short',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './shopping-short.component.css'
 })
 export class ShoppingShortComponent {
+  @Input() list: IList = {} as IList;
+
 
 }

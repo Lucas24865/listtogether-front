@@ -1,24 +1,32 @@
-<div class="card shadow mb-2 bg-body rounded">
-    <div class="card-header">
-        Familia
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4 col-xs-6">
-                <app-events-short></app-events-short>
-            </div>
-            <div class="col-md-4 col-xs-6">
-                <app-shopping-short></app-shopping-short>
-            </div>
-            <div class="col-md-4 col-xs-6">
-                <app-notes-short></app-notes-short>
-            </div>
-            <div class="col-md-4 col-xs-6">
-                <app-accounts-short></app-accounts-short>
-            </div>
-            <div class="col-md-4 col-xs-6">
-                <app-reminders-short></app-reminders-short>
-            </div>
-        </div>
-    </div>
+<div class="row m-5">
+
+    @for (list of lists; track list){
+        @switch (list.type) {
+            @case(enum.accounting){
+                <div class="col-md-4 col-xs-6">
+                    <app-accounts-short [list]="list"></app-accounts-short>
+                </div>
+            }
+            @case(enum.event){
+                <div class="col-md-4 col-xs-6">
+                    <app-events-short [list]="list"></app-events-short>
+                </div>
+            }
+            @case(enum.shopping){
+                <div class="col-md-4 col-xs-6">
+                    <app-shopping-short [list]="list"></app-shopping-short>
+                </div>
+            }
+            @case(enum.note){
+                <div class="col-md-4 col-xs-6">
+                    <app-notes-short [list]="list"></app-notes-short>
+                </div>
+            }
+            @case(enum.reminder){
+                <div class="col-md-4 col-xs-6">
+                    <app-reminders-short [list]="list"></app-reminders-short>
+                </div>
+            }
+        }
+    }
 </div>

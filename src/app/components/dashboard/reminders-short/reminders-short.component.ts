@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IList } from '../../../models/list';
 
 @Component({
   selector: 'app-reminders-short',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './reminders-short.component.css'
 })
 export class RemindersShortComponent {
+
+  @Input() list: IList = {} as IList;
 
 }
