@@ -12,4 +12,6 @@ import { CommonModule } from '@angular/common';
 })
 export class MiniUserComponent {
   @Input() users: IUserShort[] = [];
+  @Input() doubleSized: boolean = false;
+  @Input() labeled: boolean = true;
 }

@@ -9,20 +9,22 @@
     <div class="card-body">
         @for (event of list.items; track event; let i = $index){
             <div class="row">
-                <div class="col-auto d-flex align-items-center">
+                <div class="col-3 d-flex align-items-center justify-content-center">
                     <div class="calendar">
                         <span class="calendar-month">{{getShortMonth(event.date)}}</span>
                         <span class="calendar-day">{{event.date.getDate()}}</span>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="col d-flex justify-content-between">
-                        <h5 class="card-title">{{event.title}}</h5>
-                        <app-mini-user [users]="event.users" ></app-mini-user>
+                <div class="col-6 d-flex justify-content-between align-items-center">
+                    <div class="col-10">
+                        <div class="d-flex align-items-center">
+                            <h5 class="card-title">{{event.title}}</h5>
+                            <app-mini-user [users]="event.users"></app-mini-user>
+                        </div>
+                        <small class="card-text mb-1">{{event.desc}}</small>
                     </div>
-                    <p class="card-text mb-1">{{event.desc}}</p>
                 </div>
-                <div class="col d-flex align-items-center justify-content-end">
+                <div class="col-3 d-flex align-items-center justify-content-end">
                         <a href="#" class="btn btn-primary">Ver detalles</a>
                 </div>
             </div>

@@ -2,13 +2,13 @@
 <div>
     @for (user of users; track $index) {
         @if (user.color !== "") {
-            <i [ngClass]="{'fa-2x': user.doubleSize}" class="fa-solid fa-circle-user"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{user.name}}"
+            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
+            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
             [style.color]="user.color"></i>
         }
         @if (user.picture !== "") {
-            <i [ngClass]="{'fa-2x': user.doubleSize}" class="fa-solid fa-circle-user"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{user.name}}"
+            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
+            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
             [style.color]="user.color"></i>
         }
     }

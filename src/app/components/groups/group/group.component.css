@@ -1,0 +1,7 @@
+.group-details{
+    margin-top: .5rem !important;
+    margin-bottom: .5rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
+}

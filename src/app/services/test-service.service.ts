@@ -11,6 +11,18 @@ export class TestServiceService {
   constructor() {}
 
   getData(): IList[] {
+    const groupF = {
+      name: 'Familia',
+      desc: 'Descripción del grupo',
+      createdBy: {
+        picture: 'imagen.jpg',
+        name: 'Usuario',
+        color: '#000',
+      },
+      createdAt: new Date(),
+
+      userRole: 1,
+    } as IGroup
     const pendingAccountsF: IItem[] = [
       {
         date: new Date(),
@@ -22,10 +34,10 @@ export class TestServiceService {
           picture: '',
           name: 'Admin',
           color: 'blue',
-          doubleSize: false,
         },
         total: 15000,
         got: 0,
+        completed: false,
       },
       {
         date: new Date(),
@@ -37,17 +49,16 @@ export class TestServiceService {
             picture: '',
             name: 'Lucas',
             color: 'blue',
-            doubleSize: false,
           },
         ],
         addedBy: {
           picture: '',
           name: 'Admin',
           color: 'blue',
-          doubleSize: false,
         },
         total: 10000,
         got: 5000,
+        completed: true,
       },
     ];
     const eventsF: IItem[] = [
@@ -60,18 +71,17 @@ export class TestServiceService {
           {
             picture: '',
             name: 'Lucas',
-            doubleSize: false,
             color: 'red',
           },
         ],
         addedBy: {
           picture: '',
           name: 'Admin',
-          doubleSize: false,
           color: 'blue',
         },
         total: 10,
         got: 5,
+        completed: false,
       },
       {
         date: new Date('2024-04-29'),
@@ -82,18 +92,17 @@ export class TestServiceService {
           {
             picture: '',
             name: 'Ce',
-            doubleSize: false,
             color: 'green',
           },
         ],
         addedBy: {
           picture: '',
           name: 'Admin',
-          doubleSize: false,
           color: 'blue',
         },
         total: 20,
         got: 15,
+        completed: false,
       },
     ];
     const accountListF = {
@@ -102,20 +111,9 @@ export class TestServiceService {
         picture: '',
         name: 'Lucas',
         color: 'red',
-        doubleSize: false,
       },
       limitDate: new Date(),
-      group: {
-        name: 'Familia',
-        desc: 'Descripción del grupo',
-        createdBy: {
-          picture: 'imagen.jpg',
-          name: 'Usuario',
-          color: '#000',
-          doubleSize: false,
-        },
-        userRole: 1,
-      },
+      group: groupF,
       type: ListType.accounting,
       items: pendingAccountsF,
     };
@@ -125,25 +123,15 @@ export class TestServiceService {
         picture: '',
         name: 'Ce',
         color: 'green',
-        doubleSize: false,
       },
       limitDate: new Date(),
-      group: {
-        name: 'Familia',
-        desc: 'Descripción del grupo',
-        createdBy: {
-          picture: 'imagen.jpg',
-          name: 'Usuario',
-          color: '#000',
-          doubleSize: false,
-        },
-        userRole: 1,
-      },
+      group: groupF,
       type: ListType.event,
       items: eventsF,
     };
     const events: IItem[] = [
       {
+        completed: false,
         date: new Date('2024-04-11'),
         added: new Date(),
         title: 'Cumple Juan',
@@ -152,20 +140,19 @@ export class TestServiceService {
           {
             picture: '',
             name: 'Juan',
-            doubleSize: false,
             color: 'orange',
           },
         ],
         addedBy: {
           picture: '',
           name: 'Admin',
-          doubleSize: false,
           color: 'blue',
         },
         total: 10,
         got: 5,
       },
       {
+        completed: false,
         date: new Date('2024-05-19'),
         added: new Date(),
         title: 'Asado en casa de Lucas',
@@ -174,14 +161,12 @@ export class TestServiceService {
           {
             picture: '',
             name: 'Ce',
-            doubleSize: false,
             color: 'black',
           },
         ],
         addedBy: {
           picture: '',
           name: 'Admin',
-          doubleSize: false,
           color: 'blue',
         },
         total: 20,
@@ -194,7 +179,6 @@ export class TestServiceService {
         picture: '',
         name: 'Ce',
         color: 'green',
-        doubleSize: false,
       },
       limitDate: new Date(),
       group: {
@@ -204,14 +188,14 @@ export class TestServiceService {
           picture: 'imagen.jpg',
           name: 'Usuario',
           color: '#000',
-          doubleSize: false,
         },
         userRole: 1,
-      },
+      } as IGroup,
       type: ListType.event,
       items: events,
     };
     let list = {} as IList;
+    let list3 = {} as IList;
     let list2 = {} as IList;
     let lists = [] as IList[];
     list.title = "Notas"
@@ -227,6 +211,8 @@ export class TestServiceService {
     list2.group.name = "Familia"
     list2.type = ListType.reminder;
     lists.push(list2);
+    list3.type = ListType.shopping;
+    lists.push(list3);
 
     return lists;
   }

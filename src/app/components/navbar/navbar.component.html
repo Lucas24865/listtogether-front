@@ -1,40 +1,31 @@
-  <!-- place navbar here -->
+<!-- place navbar here -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand">ListTogether</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId"> 
-             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <img style="max-height: 50px;" class="me-2" src="/assets/logoCompleto.png">
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active"  aria-current="page">Inicio
+                    <a class="nav-link" href="/" [class.active]="isActiveRoute('/')">Listas
                         <span class="visually-hidden">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Listas</a>
+                    <a class="nav-link" href="/groups" [class.active]="isActiveRoute('/groups')">Grupos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" >Grupos</a>
+                    <a class="nav-link" href="/statistics" [class.active]="isActiveRoute('/statistics')">Estadisticas</a>
                 </li>
             </ul>
-            <ul class="navbar-nav me-4 mt-2 mt-lg-0">
-                <li class="nav-item d-flex" >
-                    <a class="nav-link"  [ngClass]="{'d-none': isViewGroup}"
-                     (click)="changeView()">
-                        <i class="fa-solid fa-user-group"></i>
-                    </a>
-                    <a class="nav-link" [ngClass]="{'d-none': !isViewGroup}"
-                    (click)="changeView()">
-                        <i class="fa-solid fa-list"></i>
-                    </a>
-                </li>
-            </ul> 
-            <button class="btn btn-danger my-2 my-sm-0" type="submit">
-                Logout
-            </button>
+            <div ngbDropdown class="d-flex align-items-center" ngbDropdownToggle>
+                <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <label ngbDropdownItem [disabled]="true">Usuario: {{user.name}}</label>
+                    <button ngbDropdownItem class="btn-danger">Logout</button>
+                </div>
+            </div>
         </div>
     </div>
-</nav> 
+</nav>

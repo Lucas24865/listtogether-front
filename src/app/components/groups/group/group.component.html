@@ -1,0 +1,27 @@
+<div class="card shadow mb-2 bg-body rounded">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="mb-0">{{group.name}}</h6>
+            <small>{{group.desc}}</small>
+        </div>
+        <button class="btn btn-success">Abrir</button>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-3 col-6 group-details">
+                <div>Listas: 5</div>
+            </div>
+            <div class="col-xl-3 col-6 group-details">
+                <div>Items: 15</div>
+            </div>
+            <div class="col-xl-3 col-6 group-details">
+                Admin:
+                <app-mini-user [users]="[group.members.at(1)!]" [doubleSized]="true"></app-mini-user>
+            </div>
+            <div class="col-xl-3 col-6 group-details">
+                Miembros:
+                <app-mini-user [users]="group.members" [doubleSized]="true"></app-mini-user>
+            </div>
+        </div>
+    </div>
+</div>

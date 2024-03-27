@@ -9,4 +9,5 @@ export interface IItem {
   addedBy: IUserShort;
   total: number;
   got: number;
+  completed: boolean;
 }

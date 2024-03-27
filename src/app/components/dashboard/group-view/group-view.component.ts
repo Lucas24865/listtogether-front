@@ -8,13 +8,14 @@ import Masonry from 'masonry-layout';
 import { TestServiceService } from '../../../services/test-service.service';
 import { IList } from '../../../models/list';
 import { ListType } from '../../../models/type';
+import { GraphsComponent } from "../graphs/graphs.component";
 
 @Component({
     selector: 'app-group-view',
     standalone: true,
     templateUrl: './group-view.component.html',
     styleUrl: './group-view.component.css',
-    imports: [EventsShortComponent, ShoppingShortComponent, NotesShortComponent, AccountsShortComponent, RemindersShortComponent]
+    imports: [EventsShortComponent, ShoppingShortComponent, NotesShortComponent, AccountsShortComponent, RemindersShortComponent, GraphsComponent]
 })
 export class GroupViewComponent implements OnInit, AfterViewInit {
   enum: typeof ListType = ListType;
@@ -25,10 +26,8 @@ export class GroupViewComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit(): void {
-    const grid = new Masonry(this.elementRef.nativeElement.querySelector('.row'), {
-      // Opciones de Masonry si es necesario
-      itemSelector: '.col-md-4', // Selector de los elementos de la mampostería
-      // Otras opciones de configuración de Masonry si es necesario
+    const grid = new Masonry(this.elementRef.nativeElement.querySelector('.masonry'), {
+      itemSelector: '.col-md-4', 
     });
   }
 }
