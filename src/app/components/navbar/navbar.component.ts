@@ -27,4 +27,7 @@ export class NavbarComponent {
   isActiveRoute(route: string): boolean {
     return this.router.url === route;
   }
+  isActiveLogin(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register' || this.router.url === '/forgot';
+  }
 }

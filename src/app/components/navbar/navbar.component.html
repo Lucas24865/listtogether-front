@@ -1,5 +1,5 @@
 <!-- place navbar here -->
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light" [class.d-none]="isActiveLogin()">
     <div class="container">
         <img style="max-height: 50px;" class="me-2" src="/assets/logoCompleto.png">
         <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
