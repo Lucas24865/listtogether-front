@@ -1,4 +1,4 @@
-export interface IUserShort {
+export interface IUser {
     picture: string;
     name: string;
     color: string

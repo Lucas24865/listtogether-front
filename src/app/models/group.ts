@@ -1,10 +1,10 @@
-import { IUserShort } from './users-shorts';
+import { IUser } from './user';
 
 export interface IGroup {
   name: string;
   desc: string;
-  createdBy: IUserShort;
+  createdBy: IUser;
   createdAt: Date;
-  members: IUserShort[];
+  members: IUser[];
   userRole: number;
 }

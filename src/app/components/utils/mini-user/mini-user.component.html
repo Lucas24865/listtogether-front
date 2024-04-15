@@ -6,7 +6,7 @@
             data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
             [style.color]="user.color"></i>
         }
-        @if (user.picture !== "") {
+        @else if (user.picture !== "") {
             <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
             data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
             [style.color]="user.color"></i>

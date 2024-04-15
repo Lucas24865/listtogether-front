@@ -1,12 +1,12 @@
-import { IUserShort } from './users-shorts';
+import { IUser } from './user';
 
 export interface IItem {
   date: Date;
   added: Date;
   title: string;
   desc: string;
-  users: IUserShort[];
-  addedBy: IUserShort;
+  users: IUser[];
+  addedBy: IUser;
   total: number;
   got: number;
   completed: boolean;

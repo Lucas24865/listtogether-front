@@ -1,5 +1,5 @@
 import { Component, Input  } from '@angular/core';
-import { IUserShort } from '../../../models/users-shorts';
+import { IUser } from '../../../models/user';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mini-user.component.css'
 })
 export class MiniUserComponent {
-  @Input() users: IUserShort[] = [];
+  @Input() users: IUser[] = [];
   @Input() doubleSized: boolean = false;
   @Input() labeled: boolean = true;
 }

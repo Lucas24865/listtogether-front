@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GroupViewComponent } from './components/dashboard/group-view/group-view.component';
 import { TypeViewComponent } from './components/dashboard/type-view/type-view.component';
@@ -14,4 +14,8 @@ import { TypeViewComponent } from './components/dashboard/type-view/type-view.co
 })
 export class AppComponent {
   title = 'list-together';
+  constructor(private router: Router) {}
+  isActiveLogin(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register' || this.router.url === '/forgot';
+  }
 }

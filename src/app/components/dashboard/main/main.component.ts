@@ -17,7 +17,6 @@ export class MainComponent implements OnInit{
   }
   changeView() {
     this.isViewGroup = !this.isViewGroup
-    console.log(this.isViewGroup)
   }
 
 }

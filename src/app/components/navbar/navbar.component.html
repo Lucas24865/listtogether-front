@@ -1,5 +1,5 @@
 <!-- place navbar here -->
-<nav class="navbar navbar-expand-sm navbar-light bg-light" [class.d-none]="isActiveLogin()">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
         <img style="max-height: 50px;" class="me-2" src="/assets/logoCompleto.png">
         <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -23,7 +23,7 @@
                 <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <label ngbDropdownItem [disabled]="true">Usuario: {{user.name}}</label>
-                    <button ngbDropdownItem class="btn-danger">Logout</button>
+                    <button ngbDropdownItem class="btn-danger" (click)="logout()">Logout</button>
                 </div>
             </div>
         </div>

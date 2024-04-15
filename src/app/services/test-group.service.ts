@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IGroup } from '../models/group';
-import { IUserShort } from '../models/users-shorts';
+import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -12,22 +12,22 @@ export class TestGroupService {
       picture: '',
       name: 'Lucas',
       color: 'black',
-    } as IUserShort;
+    } as IUser;
     const Ce = {
       picture: '',
       name: 'Celi',
       color: 'green',
-    } as IUserShort;
+    } as IUser;
     const Juan = {
       picture: '',
       name: 'Juan',
       color: 'red',
-    } as IUserShort;
+    } as IUser;
     const Joa = {
       picture: '',
       name: 'Joa',
       color: 'orange',
-    } as IUserShort;
+    } as IUser;
 
     const groupF = {
       name: 'Familia',
