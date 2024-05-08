@@ -1,1 +1,35 @@
-<p>group-edit works!</p>
+<div class="row justify-content-center align-items-center m-5">
+    <div class="col-8 col-md-7 card shadow bg-body rounded">
+        <a href="login" class="text-decoration-none">
+            <i class="fa-solid fa-arrow-left mt-4 fa-lg"></i>
+        </a>
+        <h1 class="text-center mb-3">Registro</h1>
+        <form (ngSubmit)="register()">
+            <div class="row">
+                <div class="col-6">
+                    <label for="mail" class="form-label">Correo</label>
+                    <input type="mail" class="form-control" name="mail" [(ngModel)]="mail">
+                </div>
+                <div class="col-6">
+                    <label for="user" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" name="user" [(ngModel)]="user">
+                </div>
+                <div class="col-6">
+                    <label for="fullName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="fullName" [(ngModel)]="fullName">
+                </div>
+                <div class="col-6">
+                    <label for="pass" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="pass" [(ngModel)]="pass">
+                </div>
+                <div class="col-6">
+                    <label for="passConf" class="form-label">Confirmar contraseña</label>
+                    <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf">
+                </div>
+                <div class="col-12 justify-content-center d-flex">
+                    <button type="submit" id="btn-submit" class="btn btn-primary m-3">Registrarse</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

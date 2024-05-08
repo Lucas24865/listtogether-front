@@ -1,0 +1,12 @@
+<div ngbDropdown class="d-flex align-items-center" ngbDropdownToggle>
+    @if(false){
+        <i class="fa-regular fa-bell fa-2x"></i>
+    } @else {
+        <i class="fa-solid fa-bell fa-2x"></i>
+    }
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+        @for (item of notifications; track $index) {
+            <app-group-notification></app-group-notification>
+        }
+    </div>
+</div>

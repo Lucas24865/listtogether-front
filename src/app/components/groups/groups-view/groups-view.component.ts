@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IGroup } from '../../../models/group';
 import { GroupComponent } from '../group/group.component';
-import { TestGroupService } from '../../../services/test-group.service';
+import { GroupsService } from '../../../services/groups.service';
 
 @Component({
     selector: 'app-groups-view',
@@ -12,7 +12,10 @@ import { TestGroupService } from '../../../services/test-group.service';
 })
 export class GroupsViewComponent {
   groups: IGroup[] = []
-  constructor (private service: TestGroupService){
-    this.groups = service.getData();
+  constructor (private service: GroupsService){
+    service.getGroups().subscribe((data) => {
+      this.groups = data.msg
+      console.log(data)
+    })
   }
 }

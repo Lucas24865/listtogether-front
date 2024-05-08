@@ -9,14 +9,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-3 col-6 group-details">
-                <div>Listas: 5</div>
-            </div>
-            <div class="col-xl-3 col-6 group-details">
-                <div>Items: 15</div>
+                <div>Listas: {{group.lists}}</div>
             </div>
             <div class="col-xl-3 col-6 group-details">
                 Admin:
-                <app-mini-user [users]="[group.members.at(1)!]" [doubleSized]="true"></app-mini-user>
+                <app-mini-user [users]="group.admins" [doubleSized]="true"></app-mini-user>
             </div>
             <div class="col-xl-3 col-6 group-details">
                 Miembros:

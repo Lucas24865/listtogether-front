@@ -41,17 +41,27 @@ export class RegisterComponent {
           }).then(() => {this.router.navigateByUrl('/');});
         },
         (error) => {
+          console.log(error)
           if(error.error.error == 'mail is already registered'){
             swal.fire({
               title: 'Error!',
               text: 'El mail se encuentra registrado, intente iniciar sesión',
               icon: 'error',
             });
+            return
           }
           if(error.error.error == 'user is already registered'){
             swal.fire({
               title: 'Error!',
               text: 'El usuario se encuentra registrado, intente iniciar sesión o un intente uno distinto',
+              icon: 'error',
+            });
+            return
+          }
+          if (error.name == "HttpErrorResponse"){
+            swal.fire({
+              title: 'Error!',
+              text: 'No se puede conectar con el servidor',
               icon: 'error',
             });
           }

@@ -22,7 +22,8 @@
             <div ngbDropdown class="d-flex align-items-center" ngbDropdownToggle>
                 <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <label ngbDropdownItem [disabled]="true">Usuario: {{user.name}}</label>
+                    <label ngbDropdownItem [disabled]="true">Usuario: {{user.user}}</label>
+                    <label ngbDropdownItem [disabled]="true">Nombre: {{user.name}}</label>
                     <button ngbDropdownItem class="btn-danger" (click)="logout()">Logout</button>
                 </div>
             </div>

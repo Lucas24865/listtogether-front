@@ -6,5 +6,6 @@ export interface IGroup {
   createdBy: IUser;
   createdAt: Date;
   members: IUser[];
-  userRole: number;
+  admins: IUser[];
+  lists: number;
 }

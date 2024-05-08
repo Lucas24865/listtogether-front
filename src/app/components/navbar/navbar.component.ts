@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          this.user = JSON.parse(sessionStorage.getItem('user')!) as IUser;
+          this.user = JSON.parse(sessionStorage.getItem('user')!).msg as IUser;
         } 
       });
     });

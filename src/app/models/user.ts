@@ -1,5 +1,6 @@
 export interface IUser {
     picture: string;
     name: string;
-    color: string
+    color: string;
+    user:string;
   }

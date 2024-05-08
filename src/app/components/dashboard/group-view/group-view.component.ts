@@ -5,10 +5,10 @@ import { NotesShortComponent } from "../notes-short/notes-short.component";
 import { AccountsShortComponent } from "../accounts-short/accounts-short.component";
 import { RemindersShortComponent } from "../reminders-short/reminders-short.component";
 import Masonry from 'masonry-layout';
-import { TestServiceService } from '../../../services/test-service.service';
 import { IList } from '../../../models/list';
 import { ListType } from '../../../models/type';
 import { GraphsComponent } from "../graphs/graphs.component";
+import { ListService } from '../../../services/list.service';
 
 @Component({
     selector: 'app-group-view',
@@ -20,9 +20,9 @@ import { GraphsComponent } from "../graphs/graphs.component";
 export class GroupViewComponent implements OnInit, AfterViewInit {
   enum: typeof ListType = ListType;
   lists: IList[] = []
-  constructor(private elementRef: ElementRef, private testService: TestServiceService) {}
+  constructor(private elementRef: ElementRef, private listService: ListService) {}
   ngOnInit(): void {
-    this.lists = this.testService.getData();
+    this.lists = this.listService.getAll();
   }
   
   ngAfterViewInit(): void {

@@ -1,24 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUser } from '../models/user';
 import { Observable, catchError, map, of } from 'rxjs';
+import { API_URL } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  url = 'http://localhost:8080/api/';
-
   userName: string = ""
 
   constructor(private http: HttpClient) {}
 
   Login(credentials: any): Observable<any> {
-    return this.http.post<any>(this.url + 'auth/login', credentials);
+    return this.http.post<any>(API_URL + 'auth/login', credentials);
   }
 
   Register(user: any): Observable<any> {
-    return this.http.post<any>(this.url + 'auth/register', user);
+    return this.http.post<any>(API_URL + 'auth/register', user);
   }
 
   Logout() {
@@ -43,7 +41,7 @@ export class AuthService {
   }
 
   getUser() {
-    return this.http.get<any>(this.url + 'user');
+    return this.http.get<any>(API_URL + 'user');
   }
   
   getUserName() {
