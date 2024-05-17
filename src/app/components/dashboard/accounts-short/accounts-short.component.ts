@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MiniUserComponent } from "../../utils/mini-user/mini-user.component";
 import { FormatMoney } from "../../utils/pipes/formatMoney";
-import { IList } from '../../../models/list';
+import { IListResponse } from '../../../models/list';
 
 @Component({
     selector: 'app-accounts-short',
@@ -11,5 +11,5 @@ import { IList } from '../../../models/list';
     imports: [MiniUserComponent, FormatMoney]
 })
 export class AccountsShortComponent{
-  @Input() list: IList = {} as IList;
+  @Input() list: IListResponse = {} as IListResponse;
 }

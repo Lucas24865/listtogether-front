@@ -6,8 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatMoney implements PipeTransform {
 
-  transform(value: number): string {
-    return '$' + value.toFixed(2);
+  transform(value: string): string {
+    const num = parseFloat(value);
+    if (isNaN(num)) {
+        return 'Invalid input';
+    }
+    
+    return '$' + num.toFixed(2);
   }
 
 }

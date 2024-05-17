@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { IList } from '../../../models/list';
+import { IListResponse } from '../../../models/list';
+import { MiniUserComponent } from "../../utils/mini-user/mini-user.component";
 
 @Component({
-  selector: 'app-shopping-short',
-  standalone: true,
-  imports: [],
-  templateUrl: './shopping-short.component.html',
-  styleUrl: './shopping-short.component.css'
+    selector: 'app-shopping-short',
+    standalone: true,
+    templateUrl: './shopping-short.component.html',
+    styleUrl: './shopping-short.component.css',
+    imports: [MiniUserComponent]
 })
 export class ShoppingShortComponent {
-  @Input() list: IList = {} as IList;
+  @Input() list: IListResponse = {} as IListResponse;
 
 
 }

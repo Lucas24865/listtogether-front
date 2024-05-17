@@ -1,13 +1,26 @@
-import { IUser } from './user';
-import { IGroup } from './group';
 import { ListType } from './type';
-import { IItem } from './item';
+import { IItem, IItemResponse } from './item';
+import { IGroup } from './group';
+import { IUser } from './user';
 
 export interface IList {
-  title: string;
-  createdBy: IUser;
-  limitDate: Date;
-  group: IGroup;
-  type: ListType;
-  items: IItem[];
+  Id: string;
+  Name: string;
+  Desc: string;
+  GroupId: string;
+  Items: IItem[];
+  Type: ListType;
+  CreatedAt: string;
+  CreatedBy: string;
+}
+
+export interface IListResponse {
+  Id: string;
+  Name: string;
+  Desc: string;
+  Group: IGroup;
+  Items: IItemResponse[];
+  Type: ListType;
+  CreatedAt: string;
+  CreatedBy: IUser;
 }

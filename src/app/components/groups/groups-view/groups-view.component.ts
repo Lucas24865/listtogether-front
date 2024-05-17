@@ -14,8 +14,8 @@ export class GroupsViewComponent {
   groups: IGroup[] = []
   constructor (private service: GroupsService){
     service.getGroups().subscribe((data) => {
-      this.groups = data.msg
       console.log(data)
+      this.groups = data.msg
     })
   }
 }

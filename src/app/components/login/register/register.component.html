@@ -26,6 +26,59 @@
                     <label for="passConf" class="form-label">Confirmar contraseña</label>
                     <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf">
                 </div>
+                <div class="col-6">
+                    <label for="colorform" class="form-label">Color</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="red" value="red" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Rojo <span class="color-preview ms-1" style="background: red;"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="green" value="green" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Verde <span class="color-preview ms-1" style="background: green;"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="pink" value="pink">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Rosa <span class="color-preview ms-1" style="background: pink;"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="black" value="black">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Negro <span class="color-preview ms-1" style="background: black;"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="orange" value="orange">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Naranja <span class="color-preview ms-1" style="background: orange;"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="color" [(ngModel)]="selectedColor"
+                                    id="blue" value="blue">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Azul <span class="color-preview ms-1" style="background: blue;"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12 justify-content-center d-flex">
                     <button type="submit" id="btn-submit" class="btn btn-primary m-3">Registrarse</button>
                 </div>

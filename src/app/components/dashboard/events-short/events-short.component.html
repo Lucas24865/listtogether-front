@@ -1,36 +1,38 @@
 <div class="card shadow mb-2 bg-body rounded">
     <div class="card-header d-flex justify-content-between align-items-center">
         <div>
-            <h6 class="mb-0">{{list.title}}</h6>
-            <small>{{list.group.name}}</small>
+            <h6 class="mb-0">{{list.Name}}</h6>
+            <small>{{list.Group.Name}}</small>
         </div>
-        <button class="btn btn-success">Abrir</button>
+        <a href="lists/{{list.Id}}">
+            <button class="btn btn-success">Editar</button>
+        </a>
     </div>
     <div class="card-body">
-        @for (event of list.items; track event; let i = $index){
-            <div class="row">
-                <div class="col-3 d-flex align-items-center justify-content-center">
-                    <div class="calendar">
-                        <span class="calendar-month">{{getShortMonth(event.date)}}</span>
-                        <span class="calendar-day">{{event.date.getDate()}}</span>
-                    </div>
-                </div>
-                <div class="col-6 d-flex justify-content-between align-items-center">
-                    <div class="col-10">
-                        <div class="d-flex align-items-center">
-                            <h5 class="card-title">{{event.title}}</h5>
-                            <app-mini-user [users]="event.users"></app-mini-user>
-                        </div>
-                        <small class="card-text mb-1">{{event.desc}}</small>
-                    </div>
-                </div>
-                <div class="col-3 d-flex align-items-center justify-content-end">
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
+        @for (event of list.Items; track event; let i = $index){
+        @if (i != 0) {
+        <hr class="bg-danger border-2 m-3 border-top border-danger" />
+        }
+        <div class="row">
+            <div class="col-3 d-flex align-items-center justify-content-center">
+                <div class="calendar">
+                    <span class="calendar-month">{{getShortMonth(event.LimitDate)}}</span>
+                    <span class="calendar-day">{{getDate(event.LimitDate)}}</span>
                 </div>
             </div>
-            @if (i%2==0) {
-                <hr class="bg-danger border-2 m-3 border-top border-danger" />
-            }
+            <div class="col-6 d-flex justify-content-between align-items-center">
+                <div class="col-10">
+                    <div class="d-flex align-items-center">
+                        <h5 class="card-title">{{event.Name}}</h5>
+                        <app-mini-user [users]="[event.CreatedBy]"></app-mini-user>
+                    </div>
+                    <small class="card-text mb-1">{{event.Desc}}</small>
+                </div>
+            </div>
+            <!-- <div class="col-3 d-flex align-items-center justify-content-end">
+                        <a href="#" class="btn btn-primary">Ver detalles</a>
+                </div> -->
+        </div>
         }
     </div>
 </div>

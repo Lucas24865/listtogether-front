@@ -1,54 +1,36 @@
-
 <div class="card shadow mb-2 bg-body rounded">
     <div class="card-header d-flex justify-content-between align-items-center">
         <div>
-            <h6 class="mb-0">{{list.title}}</h6>
-            <small>{{list.group.name}}</small>
+            <h6 class="mb-0">{{list.Name}}</h6>
+            <small>{{list.Group.Name}}</small>
         </div>
-        <button class="btn btn-success">Abrir</button>
+        <a href="lists/{{list.Id}}">
+            <button class="btn btn-success">Editar</button>
+        </a>
     </div>
     <div class="card-body">
         <div class="list-group">
+            @for (item of list.Items; track $index) {
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-auto align-items-center d-flex">
-                        <div class="">
-                            <h4>15:00</h4>
+                        <div class="d-flex flex flex-column">
+                            <small class="text-center muted">{{getShortDate(item.LimitDate)}}</small>
+                            <h4>{{getTime(item.LimitDate)}}</h4>
                         </div>
                     </div>
                     <div class="col d-flex justify-content-between align-items-center">
                         <div>
-                            <h5 class="card-title">Oculista</h5>
-                            <p class="card-text">Rondó 134</p>
+                            <h5 class="card-title">{{item.Name}}</h5>
+                            <p class="card-text">{{item.Desc}}</p>
                         </div>
                         <div class="text-end">
-                            <i class="fa-solid fa-circle-user fa-2x"
-                                data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                data-bs-title="Ce" style="color: green;"></i>
+                            <app-mini-user [users]="[item.CreatedBy]"></app-mini-user>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-auto align-items-center d-flex">
-                        <div class="">
-                            <h4>21:00</h4>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="card-title">Futbol</h5>
-                            <p class="card-text">Talas 123</p>
-                        </div>
-                        <div class="text-end">
-                            <i class="fa-solid fa-circle-user fa-2x"
-                                data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                data-bs-title="Juan" style="color: red;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

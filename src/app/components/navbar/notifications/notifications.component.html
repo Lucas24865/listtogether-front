@@ -5,8 +5,9 @@
         <i class="fa-solid fa-bell fa-2x"></i>
     }
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        @for (item of notifications; track $index) {
-            <app-group-notification></app-group-notification>
+        <div ngbDropdownItem>Borrar todas las leidas</div>
+        @for (notification of notifications; track $index) {
+            <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>
         }
     </div>
 </div>

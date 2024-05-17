@@ -1,30 +1,61 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { GroupsService } from '../../../services/groups.service';
+import { IGroupRequest } from '../../../models/groupRequest';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group-add',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './group-add.component.html',
-  styleUrl: './group-add.component.css'
+  styleUrl: './group-add.component.css',
 })
 export class GroupAddComponent {
+  name: string | undefined;
+  desc: string | undefined;
+  userInput: string = '';
+  users: string[] = [];
 
-  user: string | undefined;
-  mail: string | undefined;
-  fullName: string | undefined;
-  pass: string | undefined;
-  passConf: string | undefined;
+  constructor(private service: GroupsService, private router: Router) {}
+
+  addUser() {
+    this.users.push(this.userInput);
+    this.userInput = '';
+  }
+
+  removeUser(userToRemove: string) {
+    const index = this.users.indexOf(userToRemove);
+    if (index !== -1) {
+      this.users.splice(index, 1);
+    }
+  }
 
   register() {
-    if (this.pass != this.passConf) {
+    let group: IGroupRequest = {
+      Name: this.name!,
+      Desc: this.desc!,
+      Users: this.users,
+      Admins: [],
+      Id: "",
+    }
+
+    this.service.addGroup(group).subscribe((data) => {
+      if (data.msg == "success") {
+        Swal.fire({
+          title: 'Exito!',
+          text: 'El grupo se creo correctamente, se mandaron las solicitudes',
+          icon: 'success',
+        }).then(() => {this.router.navigate(['/groups']);});
+      }
+      else{
         Swal.fire({
           title: 'Error!',
-          text: 'Las contraseñas no son iguales',
+          text: 'Intente más tarde',
           icon: 'error',
         });
-      return;
-    }
+      }
+    })
   }
 }

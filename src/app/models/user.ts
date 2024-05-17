@@ -1,6 +1,6 @@
 export interface IUser {
-    picture: string;
-    name: string;
-    color: string;
-    user:string;
+    Picture: string;
+    Name: string;
+    Color: string;
+    User:string;
   }

@@ -17,10 +17,13 @@ export class RegisterComponent {
   fullName: string | undefined;
   pass: string | undefined;
   passConf: string | undefined;
+  selectedColor: string = "";
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
+    
+    console.log({ user: this.user, pass: this.pass, mail: this.mail, name: this.fullName, color: this.selectedColor })
     if (this.pass != this.passConf) {
         swal.fire({
           title: 'Error!',
@@ -31,7 +34,7 @@ export class RegisterComponent {
     }
 
     this.authService
-      .Register({ user: this.user, pass: this.pass, mail: this.mail, name: this.fullName })
+      .Register({ User: this.user, Pass: this.pass, Mail: this.mail, Name: this.fullName, Color: this.selectedColor })
       .subscribe(
         () => {
           swal.fire({

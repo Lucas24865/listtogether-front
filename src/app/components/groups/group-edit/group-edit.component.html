@@ -1,33 +1,40 @@
 <div class="row justify-content-center align-items-center m-5">
     <div class="col-8 col-md-7 card shadow bg-body rounded">
-        <a href="login" class="text-decoration-none">
+        <a href="groups" class="text-decoration-none">
             <i class="fa-solid fa-arrow-left mt-4 fa-lg"></i>
         </a>
-        <h1 class="text-center mb-3">Registro</h1>
+        <h1 class="text-center mb-3">Editar grupo</h1>
         <form (ngSubmit)="register()">
             <div class="row">
                 <div class="col-6">
-                    <label for="mail" class="form-label">Correo</label>
-                    <input type="mail" class="form-control" name="mail" [(ngModel)]="mail">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="group.Name">
                 </div>
                 <div class="col-6">
-                    <label for="user" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" name="user" [(ngModel)]="user">
+                    <label for="desc" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" name="desc" [(ngModel)]="group.Desc">
                 </div>
-                <div class="col-6">
-                    <label for="fullName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="fullName" [(ngModel)]="fullName">
-                </div>
-                <div class="col-6">
-                    <label for="pass" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="pass" [(ngModel)]="pass">
-                </div>
-                <div class="col-6">
-                    <label for="passConf" class="form-label">Confirmar contraseña</label>
-                    <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf">
+                <div class="col-12 mt-2">
+                    <div class="input-group mb-3">
+                        <input type="text" [(ngModel)]="userInput" class="form-control" name="userInput" placeholder="Agregar usuario por mail o nombre de usuario" 
+                        aria-label="Agregar usuario por mail o nombre de usuario" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  (click)="addUser()">Añadir</button>
+                      </div>
+
+                    <label for="users" class="form-label">Usuarios</label>
+                    <div class="d-flex align-items-around flex-wrap">
+                        
+                        @for (user of group.Users; track $index) {
+                            <div class="card shadow bg-body rounded m-2">
+                                {{ user }}
+                                <a class="text-decoration-none" (click)="removeUser(user)">X</a>
+                            </div>
+                            
+                        }
+                    </div>
                 </div>
                 <div class="col-12 justify-content-center d-flex">
-                    <button type="submit" id="btn-submit" class="btn btn-primary m-3">Registrarse</button>
+                    <button type="submit" id="btn-submit" class="btn btn-primary m-3">Editar</button>
                 </div>
             </div>
         </form>

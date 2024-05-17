@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MiniUserComponent } from '../../utils/mini-user/mini-user.component';
-import { IList } from '../../../models/list';
+import { IListResponse } from '../../../models/list';
 
 @Component({
   selector: 'app-events-short',
@@ -10,13 +10,23 @@ import { IList } from '../../../models/list';
   imports: [MiniUserComponent],
 })
 export class EventsShortComponent {
-  @Input() list: IList = {} as IList;
+  @Input() list: IListResponse = {} as IListResponse;
 
 
 
 
-  getShortMonth(date: Date) :string{
-    return new Intl.DateTimeFormat('es-ES', { month: 'short' }).format(date);
+  getShortMonth(dateString: string): string{
+    const date = new Date(dateString);
+    const monthAbbr = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+    const monthAbbrCapitalized = monthAbbr.charAt(0).toUpperCase() + monthAbbr.slice(1);
+
+    return monthAbbrCapitalized;
+  }
+
+  getDate(dateString: string): number{
+
+    let date = new Date(dateString)
+    return date.getDate()
   }
 
 }

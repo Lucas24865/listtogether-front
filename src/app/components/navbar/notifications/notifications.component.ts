@@ -1,14 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GroupNotificationComponent } from '../notification_types/group-notification/group-notification.component';
-import { IGroupNotification } from '../../../models/groupNotification';
+import {
+  INotification,
+  INotificationMessage,
+} from '../../../models/notification';
+import { NgbDropdownModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationsService } from '../../../services/notifications.service';
 
 @Component({
   selector: 'app-notifications',
   standalone: true,
-  imports: [GroupNotificationComponent],
+  imports: [GroupNotificationComponent, NgbDropdownModule, NgbCollapse],
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.css'
+  styleUrl: './notifications.component.css',
 })
 export class NotificationsComponent {
-  notifications: IGroupNotification[] = []
+  @Input() notifications: INotification[] = [];
+  @Output() messageEvent = new EventEmitter<string>();
+
+  constructor(private notificationService: NotificationsService) {}
+
+  notificationResponse(event: INotificationMessage) {
+    if (event.Accepted) {
+      this.notificationService.accept(event.Id).subscribe((data) => {
+        console.log(data);
+        this.messageEvent.emit('reload');
+      });
+    } else {
+      this.notificationService.decline(event.Id).subscribe((data) => {
+        console.log(data);
+        this.messageEvent.emit('reload');
+      });
+    }
+  }
 }
