@@ -17,6 +17,11 @@
                     <label [class.text-decoration-line-through]="account.Completed">{{ account.Name }}</label>
                     <app-mini-user [users]="[account.CreatedBy]"></app-mini-user>
                 </div>
+                @if (account.Desc != "") {
+                    <div class="text-center">
+                        <label>{{account.Desc}}</label>
+                    </div>
+                }
                 <div class="text-center">
                     <label>{{ account.Quantity | formatMoney}}</label>
                 </div>

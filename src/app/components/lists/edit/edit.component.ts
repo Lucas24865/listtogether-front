@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
       if (data.msg == 'success') {
         Swal.fire({
           title: 'Exito!',
-          text: 'La lista se editó correctamente!',
+          text: 'La lista se borró correctamente!',
           icon: 'success',
         }).then(() => {
           this.router.navigate(['/']);
