@@ -5,7 +5,9 @@
             <small>{{list.Group.Name}}</small>
         </div>
         <a href="lists/{{list.Id}}">
-            <button class="btn btn-success">Editar</button>
+            <button class="btn btn-success">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
         </a>
     </div>
     <div class="card-body">
@@ -23,7 +25,7 @@
             <div class="col-6 d-flex justify-content-between align-items-center">
                 <div class="col-10">
                     <div class="d-flex align-items-center">
-                        <h5 class="card-title">{{event.Name}}</h5>
+                        <h5 class="card-title mb-0">{{event.Name}}</h5>
                         <app-mini-user [users]="[event.CreatedBy]"></app-mini-user>
                     </div>
                     <small class="card-text mb-1">{{event.Desc}}</small>

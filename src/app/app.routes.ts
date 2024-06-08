@@ -10,6 +10,8 @@ import { GroupAddComponent } from './components/groups/group-add/group-add.compo
 import { GroupEditComponent } from './components/groups/group-edit/group-edit.component';
 import { CreateComponent } from './components/lists/create/create.component';
 import { EditComponent } from './components/lists/edit/edit.component';
+import {LegalsComponent} from "./components/legals/legals.component";
+import {HelpComponent} from "./components/help/help.component";
 
 export const routes: Routes = [
   { path: '', component: MainComponent, canActivate: [authGuard] },
@@ -33,6 +35,11 @@ export const routes: Routes = [
   {
     path: 'statistics',
     component: StatisticsViewComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'help',
+    component: HelpComponent,
     canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },

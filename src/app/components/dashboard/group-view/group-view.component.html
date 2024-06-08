@@ -1,11 +1,53 @@
-<app-graphs></app-graphs>
-<div class="row m-2 m-xl-5 masonry">
+<!--<div class="row m-2 m-xl-5 masonry">
     <div class="col">
-        <!-- dropdown por grupo, o por tipo de listas. -->
-        <!-- <button>Filtros</button> -->
+         dropdown por grupo, o por tipo de listas. -->
+        <!-- <button>Filtros</button>
     </div>
-</div>
-<div class="row m-2 m-xl-5 masonry">
+</div>-->
+<div class="d-flex align-items-center justify-content-center flex-column m-2 mt-xl-2">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="card shadow mb-2 bg-body rounded me-2">
+                <div class="card-header align-items-center d-flex justify-content-center">
+                    <h6 class="text-center align-middle mb-0">Filtros</h6>
+                </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="me-2">
+                        <label for="desc" class="form-label">Nombre:</label>
+                        <input class="form-control">
+                    </div>
+                    <div class="me-2">
+                        <label for="desc" class="form-label">Grupo:</label>
+                        <select class="form-select" name="desc" [(ngModel)]="groupFilter">
+                            <option value="" selected disabled>Seleccione un grupo</option>
+                            @for (group of groups; track $index) {
+                                <option [value]="group.Name">{{ group.Name }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="me-2">
+                        <label for="desc" class="form-label">Tipo:</label>
+                        <select class="form-select" name="desc" [(ngModel)]="groupFilter">
+                            <option value="" selected disabled>Seleccione un Tipo</option>
+                            @for (group of groups; track $index) {
+                                <option [value]="group.Name">{{ group.Name }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mb-2 bg-body rounded">
+            <div class="card-body">
+                <a href="/lists/new">
+                    <button class="btn btn-success">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+<div class="row m-2 m-xl-5 mt-xl-2 masonry">
     @for (list of lists; track list){
         @switch (list.Type) {
             @case(enum.accounting){
@@ -35,13 +77,5 @@
             }
         }
     }
-    <div class="col-auto">
-        <div class="card shadow mb-2 bg-body rounded">
-            <div class="card-body">
-                <a  href="/lists/new">
-                    <button class="btn btn-success">Crear nueva lista</button>
-                </a>
-            </div>
-        </div>
-    </div>
+
 </div>

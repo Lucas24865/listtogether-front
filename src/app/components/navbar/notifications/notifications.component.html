@@ -1,9 +1,11 @@
-<div ngbDropdown class="d-flex align-items-center" ngbDropdownToggle>
+<div ngbDropdown display="dynamic" class="d-flex align-items-center">
+    <div ngbDropdownToggle class="d-flex align-items-center justify-content-center">
     @if(false){
         <i class="fa-regular fa-bell fa-2x"></i>
     } @else {
         <i class="fa-solid fa-bell fa-2x"></i>
     }
+    </div>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
         <div ngbDropdownItem>Borrar todas las leidas</div>
         @for (notification of notifications; track $index) {

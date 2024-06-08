@@ -9,19 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/" [class.active]="isActiveRoute('/')">Listas
-                        <span class="visually-hidden">(current)</span></a>
+                    <a class="nav-link" href="/" [class.active]="isActiveRoute('/')">Listas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/groups" [class.active]="isActiveRoute('/groups')">Grupos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/statistics" [class.active]="isActiveRoute('/statistics')">Estadisticas</a>
+                  <a class="nav-link" href="/help" [class.active]="isActiveRoute('/help')">Ayuda</a>
                 </li>
             </ul>
             <app-notifications [notifications]="notifications" (messageEvent)="reloadNotifications($event)"></app-notifications>
-            <div ngbDropdown class="d-flex align-items-center mx-2" ngbDropdownToggle>
-                <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
+            <div ngbDropdown class="d-flex align-items-center mx-2" display="dynamic">
+                <div ngbDropdownToggle class="d-flex align-items-center justify-content-center">
+                    <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
+                </div>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <label ngbDropdownItem [disabled]="true">Usuario: {{user.User}}</label>
                     <label ngbDropdownItem [disabled]="true">Nombre: {{user.Name}}</label>

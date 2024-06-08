@@ -23,4 +23,8 @@ export class NotificationsService {
   deleteRead(){
     return this.http.delete<any>(API_URL + 'notifications');
   }
+
+  deleteOne(id: string){
+    return this.http.delete<any>(API_URL + 'notifications/' + id);
+  }
 }

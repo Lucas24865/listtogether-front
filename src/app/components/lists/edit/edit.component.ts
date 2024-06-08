@@ -6,6 +6,7 @@ import { ListService } from '../../../services/list.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../../models/user';
+import {ListType} from "../../../models/type";
 
 @Component({
   selector: 'app-edit',
@@ -82,6 +83,8 @@ export class EditComponent implements OnInit {
       }
     });
   }
+
+  protected readonly ListType = ListType;
 }
 
 function transformLimitDateToLocal(list: IListResponse): void {
