@@ -1,15 +1,15 @@
 
 <div>
     @for (user of users; track $index) {
-        @if (user.color !== "") {
+        @if (user.Color !== "") {
             <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
-            [style.color]="user.color"></i>
+            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
+            [style.color]="user.Color"></i>
         }
-        @else if (user.picture !== "") {
+        @else if (user.Picture !== "") {
             <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.name : '' }}"
-            [style.color]="user.color"></i>
+            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
+            [style.color]="user.Color"></i>
         }
     }
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input  } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from '../../../models/user';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [NgbModule, CommonModule],
   templateUrl: './mini-user.component.html',
-  styleUrl: './mini-user.component.css'
+  styleUrl: './mini-user.component.css',
 })
 export class MiniUserComponent {
   @Input() users: IUser[] = [];

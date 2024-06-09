@@ -1,8 +1,8 @@
 
 export enum ListType {
-  event,
-  shopping,
-  accounting,
-  note,
-  reminder
+  event = "event",
+  shopping = "shopping",
+  accounting = "accounting",
+  note = "note",
+  reminder = "reminder"
 }

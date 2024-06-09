@@ -1,1 +1,13 @@
-<p>group-notification works!</p>
+<div ngbDropdownItem [disabled]="notification.Read" (click)="read()">
+    {{notification.Message}}
+    @if (notification.Read && notification.Accepted) {
+        <i class="fa-solid fa-check text-success fa-xl"></i>
+    }
+    @if (notification.Read && !notification.Accepted) {
+        <i class="fa-solid fa-xmark text-danger fa-xl mx-2"></i>
+    }
+    @if (!notification.Read) {
+        <i class="fa-solid fa-check text-success fa-xl" (click)="accept()"></i>
+        <i class="fa-solid fa-xmark text-danger fa-xl mx-2" (click)="decline()"></i>
+    }
+</div>

@@ -34,7 +34,6 @@ export class LoginComponent {
           return;
         }
         if (error.status == 0){
-          console.log(error)
           Swal.fire({
             title: 'Error!',
             text: 'No se puede conectar con el servidor',

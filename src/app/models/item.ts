@@ -1,13 +1,25 @@
 import { IUser } from './user';
 
 export interface IItem {
-  date: Date;
-  added: Date;
-  title: string;
-  desc: string;
-  users: IUser[];
-  addedBy: IUser;
-  total: number;
-  got: number;
-  completed: boolean;
+  Id: string;
+  Name: string;
+  Quantity: string;
+  Desc: string;
+  Completed: boolean;
+  CreatedAt: string;
+  CreatedBy: string;
+  LimitDate: string;
+  CompletedBy: string;
+}
+
+export interface IItemResponse {
+  Id: string;
+  Name: string;
+  Quantity: string;
+  Desc: string;
+  Completed: boolean;
+  CreatedAt: string;
+  CreatedBy: IUser;
+  LimitDate: string;
+  CompletedBy: IUser;
 }

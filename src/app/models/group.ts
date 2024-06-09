@@ -1,11 +1,12 @@
 import { IUser } from './user';
 
 export interface IGroup {
-  name: string;
-  desc: string;
-  createdBy: IUser;
-  createdAt: Date;
-  members: IUser[];
-  admins: IUser[];
-  lists: number;
+  Id: string;
+  Name: string;
+  Desc: string;
+  CreatedBy: IUser;
+  CreatedAt: Date;
+  Members: IUser[];
+  Admins: IUser[];
+  Lists: number;
 }
