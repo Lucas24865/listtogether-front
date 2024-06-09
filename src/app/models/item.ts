@@ -13,6 +13,7 @@ export interface IItem {
 }
 
 export interface IItemResponse {
+  CompletedByString: string;
   Id: string;
   Name: string;
   Quantity: string;

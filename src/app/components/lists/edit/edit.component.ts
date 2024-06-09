@@ -28,6 +28,10 @@ export class EditComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.service.get(params['id']).subscribe((data) => {
         this.list = data.msg;
+        this.list.Items.forEach((item) => {
+          item.CompletedByString = item.CompletedBy.User;
+        })
+        console.log(data.msg)
         transformLimitDateToLocal(this.list);
       });
     });
@@ -103,23 +107,7 @@ function transformLimitDateToLocal(list: IListResponse): void {
   });
 }
 
-function transformLimitDateToSend(list: IListResponse): void {
-  list.Items.forEach((item) => {
-    console.log(item.LimitDate);
-    if (item.LimitDate != undefined) {
-      item.LimitDate = new Date(item.LimitDate).toISOString();
-    } else {
-      item.LimitDate = new Date().toISOString();
-    }
-    if (item.CreatedAt == undefined) {
-      item.CreatedAt = new Date().toISOString();
-    }
-  });
-}
-
 function ListResponseToList(list: IListResponse): IList {
-  transformLimitDateToSend(list);
-
   var listTransformed: IList = {
     Id: list.Id,
     Name: list.Name,
@@ -139,7 +127,18 @@ function ListResponseToList(list: IListResponse): IList {
     }
 
     if (item.CompletedBy == undefined) {
-      item.CompletedBy = { User: '' } as IUser;
+      item.CompletedBy = {} as IUser;
+    }
+
+    let limitDatetransformed = ""
+
+    if (item.LimitDate != undefined) {
+      limitDatetransformed = new Date(item.LimitDate).toISOString();
+    } else {
+      limitDatetransformed = new Date().toISOString();
+    }
+    if (item.CreatedAt == undefined) {
+      limitDatetransformed = new Date().toISOString();
     }
 
     listTransformed.Items.push({
@@ -150,8 +149,8 @@ function ListResponseToList(list: IListResponse): IList {
       Completed: item.Completed,
       CreatedAt: item.CreatedAt,
       CreatedBy: item.CreatedBy.User,
-      LimitDate: item.LimitDate,
-      CompletedBy: item.CompletedBy.User,
+      LimitDate: limitDatetransformed,
+      CompletedBy: item.CompletedByString,
     });
   });
 

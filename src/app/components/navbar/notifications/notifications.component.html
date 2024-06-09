@@ -7,13 +7,13 @@
     }
     </div>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        <div ngbDropdownItem>Borrar todas las leidas</div>
+        <div ngbDropdownItem (click)="deleteAll()">Borrar todas las leidas</div>
         @for (notification of notifications; track $index) {
             @if (notification.Type == "new-group"){
                 <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>
             }
             @if (notification.Type == "generic"){
-                <app-generic [notification]="notification" ngbDropdownItem></app-generic>
+                <app-generic [notification]="notification" ngbDropdownItem (messageEvent)="delete($event)"></app-generic>
             }
         }
     </div>

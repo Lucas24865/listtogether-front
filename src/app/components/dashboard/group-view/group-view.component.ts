@@ -27,11 +27,11 @@ export class GroupViewComponent implements OnInit {
   groupFilter: string = ""
   typeFilter: ListType = ListType.null
   listTypeOptions = [
-    { value: ListType.event, display: 'Event' },
-    { value: ListType.shopping, display: 'Shopping' },
-    { value: ListType.accounting, display: 'Accounting' },
-    { value: ListType.note, display: 'Note' },
-    { value: ListType.reminder, display: 'Reminder' }
+    { value: ListType.event, display: 'Eventos' },
+    { value: ListType.shopping, display: 'Compras' },
+    { value: ListType.accounting, display: 'Cuentas' },
+    { value: ListType.note, display: 'Notas' },
+    { value: ListType.reminder, display: 'Recordatorios' }
   ];
 
   constructor(private elementRef: ElementRef, private listService: ListService) {}

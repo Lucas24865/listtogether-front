@@ -13,9 +13,10 @@ import {INotification, INotificationMessage} from "../../../../models/notificati
 })
 export class GenericComponent {
   @Input() notification: INotification = {} as INotification;
+  @Output() messageEvent = new EventEmitter<string>();
 
   read() {}
   delete(){
-
+    this.messageEvent.emit(this.notification.Id );
   }
 }

@@ -53,7 +53,7 @@
                                     <label for="desc" class="form-label">Descripcion</label>
                                     <input type="text" class="form-control" name="desc" [(ngModel)]="item.Desc">
                                 </div>
-                                @if (list.Type == ListType.shopping ){
+                                @if (list.Type == ListType.shopping || list.Type == ListType.accounting){
                                     <div class="col-6 d-flex align-items-center justify-content-center mb-2">
                                         <label class="me-2 my-0">Está completo?</label>
                                         <input type="checkbox" [(ngModel)]="item.Completed" name="completed">
@@ -70,22 +70,22 @@
                                         <input type="text" class="form-control" name="Quantity" [(ngModel)]="item.Quantity">
                                     </div>
                                 }
-                                @if (list.Type == ListType.shopping ){
+                                @if (list.Type == ListType.shopping || list.Type == ListType.accounting ){
                                     <div class="col-12 mb-2">
                                         <label for="desc" class="form-label">Completado por</label>
-                                        <select class="form-select" name="desc" [(ngModel)]="item.CompletedBy" [disabled]="!item.Completed">
+                                        <select class="form-select" name="desc" [(ngModel)]="item.CompletedByString" [disabled]="!item.Completed">
                                             <option value="" selected disabled>Seleccione un integrante</option>
                                             @for (member of list.Group.Members; track $index) {
-                                                <option [value]="member.Name">{{ member.Name }}</option>
+                                                <option [value]="member.User">{{ member.Name }}</option>
                                             }
                                         </select>
                                     </div>
                                 }
-                                @if (list.Type != ListType.note){
+                                @if (list.Type != ListType.note && list.Type != ListType.shopping && list.Type != ListType.accounting) {
                                     <div class="col-12">
-                                        <label for="date" class="form-label">Fecha</label>
-                                        <input type="datetime-local" class="form-control" name="date"
-                                               [(ngModel)]="item.LimitDate">
+                                      <label class="form-label">Fecha</label>
+                                      <input type="datetime-local" class="form-control" name="date"
+                                             [(ngModel)]="item.LimitDate">
                                     </div>
                                 }
                             </div>

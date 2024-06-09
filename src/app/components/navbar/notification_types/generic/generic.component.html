@@ -1,4 +1,4 @@
 <div ngbDropdownItem [disabled]="notification.Read" (click)="read()">
     {{notification.Message}}
-    <i class="fa-solid fa-xmark"></i>
+    <i class="fa-solid fa-xmark" (click)="delete()"></i>
 </div>

@@ -15,9 +15,9 @@
             @for (item of list.Items; track $index) {
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="d-flex">
-                    <input class="form-check-input me-1" type="checkbox" value="" id="tortascheck2"
-                        [checked]="item.Completed">
-                    <label>{{item.Name}}</label>
+                    <input class="form-check-input me-1" type="checkbox" value=""
+                        [checked]="item.Completed" style="pointer-events: none;">
+                    <label [class.text-decoration-line-through]="item.Completed">{{item.Name}}</label>
                     <app-mini-user [users]="[item.CreatedBy]"></app-mini-user>
                 </div>
                 @if (item.Desc != "") {
