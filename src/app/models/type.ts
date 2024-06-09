@@ -4,5 +4,6 @@ export enum ListType {
   shopping = "shopping",
   accounting = "accounting",
   note = "note",
-  reminder = "reminder"
+  reminder = "reminder",
+  null = "null"
 }

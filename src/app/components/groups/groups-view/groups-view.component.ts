@@ -3,16 +3,19 @@ import { IGroup } from '../../../models/group';
 import { GroupComponent } from '../group/group.component';
 import { GroupsService } from '../../../services/groups.service';
 import Swal from "sweetalert2";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-groups-view',
     standalone: true,
     templateUrl: './groups-view.component.html',
     styleUrl: './groups-view.component.css',
-    imports: [GroupComponent]
+  imports: [GroupComponent, FormsModule]
 })
 export class GroupsViewComponent {
   groups: IGroup[] = []
+  filteredGroups: IGroup[] = []
+  nameFilter: string = ""
   constructor (private service: GroupsService){
     Swal.fire({
       title: 'Cargando...',
@@ -23,8 +26,8 @@ export class GroupsViewComponent {
       }
     });
     service.getGroups().subscribe((data) => {
-      console.log(data)
       this.groups = data.msg
+      this.filteredGroups = [...this.groups]
       Swal.close();
     }, (error) => {
       console.error(error);
@@ -36,5 +39,13 @@ export class GroupsViewComponent {
         text: 'Hubo un error al cargar los datos',
       });
     });
+  }
+  filterGroups() {
+    this.filteredGroups = this.groups.filter(group => {
+      return (this.nameFilter == "" || group.Name.toLowerCase().includes(this.nameFilter.toLowerCase()))
+    });
+  }
+  cleanFilters(){
+    this.nameFilter = ""
   }
 }

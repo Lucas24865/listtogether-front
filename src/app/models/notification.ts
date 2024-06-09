@@ -7,6 +7,7 @@ export interface INotification {
   Message: string;
   Read: boolean;
   User: string;
+  Type: string;
 }
 export interface INotificationMessage {
   Accepted: boolean;

@@ -1,11 +1,19 @@
-<div class="row justify-content-center align-items-center m-5">
-    <div class="col-8 col-md-7 card shadow bg-body rounded">
-        <a href="groups" class="text-decoration-none">
-            <i class="fa-solid fa-arrow-left mt-4 fa-lg"></i>
-        </a>
-        <h1 class="text-center mb-3">Nuevo grupo</h1>
-        <form (ngSubmit)="register()">
-            <div class="row">
+<div class="row justify-content-center align-items-center m-lg-5 m-2 ">
+    <div class="col-lg-8 col-md-7 col-11 card shadow bg-body rounded p-0">
+        <div class="row m-0 card-header">
+            <div class="col-2 align-items-center d-flex justify-content-start p-0 m-0">
+                <a href="groups" class="text-decoration-none">
+                    <i class="fa-solid fa-arrow-left fa-lg"></i>
+                </a>
+            </div>
+            <div class="col-8 align-items-center d-flex justify-content-center">
+                <h4 class="text-center align-middle mb-0">Crear</h4>
+            </div>
+            <div class="col-2">
+                <p> </p>
+            </div>
+        </div>
+        <div class="row p-4 m-0" style="background: #dcdcdc52">
                 <div class="col-6">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" class="form-control" name="name" [(ngModel)]="name">
@@ -15,25 +23,44 @@
                     <input type="text" class="form-control" name="desc" [(ngModel)]="desc">
                 </div>
                 <div class="col-12 mt-2">
-                    <label for="userInput" class="form-label">Agregar usuario por mail o nombre de usuario</label>
-                    <input type="text" [(ngModel)]="userInput" class="form-control mb-2" name="userInput" (keydown.enter)="addUser()">
-
-                    <label for="users" class="form-label">Usuarios invitados</label>
-                    <div class="d-flex align-items-around flex-wrap">
-                        
-                        @for (user of users; track $index) {
-                            <div class="card shadow bg-body rounded m-2">
-                                {{ user }}
-                                <a class="text-decoration-none" (click)="removeUser(user)">X</a>
-                            </div>
-                            
-                        }
+                    <div class="input-group mb-3">
+                        <input type="text" [(ngModel)]="userInput" class="form-control" name="userInput" placeholder="Agregar usuario por mail o nombre de usuario"
+                               aria-label="Agregar usuario por mail o nombre de usuario" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  (click)="addUser()">Añadir</button>
                     </div>
+                    @if (users.length > 0) {
+                        <div class="col-12 mt-4 p-0 card shadow bg-body rounded">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <label class="form-label m-0">Usuarios</label>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center flex-wrap">
+                                @for (user of users; track $index) {
+                                    <div class="card shadow bg-body rounded m-2 p-0">
+                                        <div class="row m-0 card-header">
+                                            <div class="col-2 align-items-center d-flex justify-content-start p-0 m-0">
+                                                <p> </p>
+                                            </div>
+                                            <div class="col-8 align-items-center d-flex justify-content-center">
+                                                <h6 class="text-center align-middle mb-0">#{{$index+1}}</h6>
+                                            </div>
+                                            <div class="col-2 align-items-center d-flex justify-content-end p-0 m-0">
+                                                <a class="text-decoration-none text-end" (click)="removeUser(user)">
+                                                    <i class="fa-solid fa-xmark fa-lg"></i>
+                                                </a>
+                                            </div>
+                                            <p class="m-0 text-center">
+                                                {{ user }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="col-12 justify-content-center d-flex">
-                    <button type="submit" id="btn-submit" class="btn btn-primary m-3">Crear grupo</button>
+                <div class="col-12 justify-content-end d-flex">
+                    <button type="submit" id="btn-submit" class="btn btn-success mt-3" (click)="register()" >Crear grupo</button>
                 </div>
             </div>
-        </form>
     </div>
 </div>

@@ -89,6 +89,8 @@ export class CreateComponent implements OnInit {
   removeItem(item: IItem) {
     this.list.Items.splice(this.list.Items.indexOf(item), 1);
   }
+
+    protected readonly ListType = ListType;
 }
 
 function transformLimitDate(list: IList): void {

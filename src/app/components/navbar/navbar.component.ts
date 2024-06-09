@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import { MiniUserComponent } from '../utils/mini-user/mini-user.component';
 import { IUser } from '../../models/user';
 import { NgbDropdownModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationsService } from '../../services/notifications.service';
 import { INotification } from '../../models/notification';
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -39,7 +40,11 @@ export class NavbarComponent implements OnInit {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.user = JSON.parse(sessionStorage.getItem('user')!).msg as IUser;
-          this.reloadNotifications(null);
+          this.router.events.pipe(
+              filter(event => event instanceof NavigationEnd)
+          ).subscribe(() => {
+            this.reloadNotifications(null);
+          });
         }
       });
     });
@@ -50,6 +55,7 @@ export class NavbarComponent implements OnInit {
   reloadNotifications(event: any) {
     this.notifService.getAll().subscribe((data) => {
       this.notifications = data.msg;
+      console.log(data.msg)
     });
   }
 

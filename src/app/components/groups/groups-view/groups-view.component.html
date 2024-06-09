@@ -1,18 +1,37 @@
-<div class="row m-2 m-xl-5 mb-2">
-    @for (group of groups; track group){
-        <div class="col-md-6 col-xs-12">
-            <app-group [group] = "group"></app-group>
+<div class="d-flex align-items-center justify-content-center flex-column m-2 mt-xl-2">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="card shadow mb-2 bg-body rounded me-2">
+            <div class="card-header align-items-center d-flex justify-content-between">
+                <h6 class="text-center align-middle mb-0">Filtros</h6>
+                <button class="btn btn-danger" (click)="cleanFilters()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="me-2">
+                        <label class="form-label" >Nombre:</label>
+                        <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterGroups()"
+                               placeholder="Nombre del grupo...">
+                    </div>
+                </div>
+            </div>
         </div>
-    }
-</div>
-<div class="row m-2 m-xl-5 mt-2 justify-content-center">
-    <div class="col-auto">
         <div class="card shadow mb-2 bg-body rounded">
             <div class="card-body">
-                <a  href="/groups/new">
-                    <button class="btn btn-success">Crear nuevo grupo</button>
+                <a href="/groups/new">
+                    <button class="btn btn-success">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </a>
             </div>
         </div>
     </div>
+</div>
+<div class="row m-2 m-xl-5 mt-0 mb-2">
+    @for (group of filteredGroups; track group){
+        <div class="col-md-6 col-xs-12">
+            <app-group [group] = "group"></app-group>
+        </div>
+    }
 </div>

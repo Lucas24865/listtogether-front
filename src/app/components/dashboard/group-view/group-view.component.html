@@ -7,30 +7,34 @@
 <div class="d-flex align-items-center justify-content-center flex-column m-2 mt-xl-2">
     <div class="d-flex align-items-center justify-content-center">
         <div class="card shadow mb-2 bg-body rounded me-2">
-                <div class="card-header align-items-center d-flex justify-content-center">
+                <div class="card-header align-items-center d-flex justify-content-between">
                     <h6 class="text-center align-middle mb-0">Filtros</h6>
+                    <button class="btn btn-danger" (click)="cleanFilters()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="me-2">
-                        <label for="desc" class="form-label">Nombre:</label>
-                        <input class="form-control">
+                        <label class="form-label" >Nombre:</label>
+                        <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterLists()"
+                        placeholder="Nombre de la lista...">
                     </div>
                     <div class="me-2">
-                        <label for="desc" class="form-label">Grupo:</label>
-                        <select class="form-select" name="desc" [(ngModel)]="groupFilter">
-                            <option value="" selected disabled>Seleccione un grupo</option>
+                        <label class="form-label">Grupo:</label>
+                        <select class="form-select" name="desc" [(ngModel)]="groupFilter" (ngModelChange)="filterLists()">
+                            <option value="" selected>Seleccione un grupo</option>
                             @for (group of groups; track $index) {
                                 <option [value]="group.Name">{{ group.Name }}</option>
                             }
                         </select>
                     </div>
                     <div class="me-2">
-                        <label for="desc" class="form-label">Tipo:</label>
-                        <select class="form-select" name="desc" [(ngModel)]="groupFilter">
-                            <option value="" selected disabled>Seleccione un Tipo</option>
-                            @for (group of groups; track $index) {
-                                <option [value]="group.Name">{{ group.Name }}</option>
+                        <label class="form-label">Tipo:</label>
+                        <select class="form-select" name="desc" [(ngModel)]="typeFilter" (ngModelChange)="filterLists()">
+                            <option value="{{ListType.null}}" selected>Seleccione un Tipo</option>
+                            @for (type of listTypeOptions; track $index) {
+                                <option [value]="type.value">{{ type.display }}</option>
                             }
                         </select>
                     </div>
@@ -47,8 +51,9 @@
             </div>
         </div>
     </div>
+</div>
 <div class="row m-2 m-xl-5 mt-xl-2 masonry">
-    @for (list of lists; track list){
+    @for (list of listsFiltered; track list){
         @switch (list.Type) {
             @case(enum.accounting){
                 <div class="col-md-4 col-xs-6">
