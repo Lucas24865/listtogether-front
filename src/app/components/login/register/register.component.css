@@ -1,0 +1,9 @@
+.color-preview {
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    display: inline-block;
+    border: 1px solid gray;
+    vertical-align: middle;
+    border-radius: 2px;
+}

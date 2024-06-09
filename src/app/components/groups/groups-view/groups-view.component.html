@@ -1,0 +1,19 @@
+<input class="input-group" [(ngModel)]="searchTerm" (input)="filterList()" placeholder="Ingrese nombre de usuario...">
+<div class="row m-2 m-xl-5 mb-2">
+  @for (group of groupsFiltered; track group) {
+    <div class="col-md-6 col-xs-12">
+      <app-group [group]="group"></app-group>
+    </div>
+  }
+</div>
+<div class="row m-2 m-xl-5 mt-2 justify-content-center">
+  <div class="col-auto">
+    <div class="card shadow mb-2 bg-body rounded">
+      <div class="card-body">
+        <a href="/groups/new">
+          <button class="btn btn-success">Crear nuevo grupo</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

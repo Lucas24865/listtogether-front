@@ -1,0 +1,74 @@
+<div class="row justify-content-center align-items-center m-5">
+    <div class="col-8 col-md-7 card shadow bg-body rounded">
+        <a href="/" class="text-decoration-none">
+            <i class="fa-solid fa-arrow-left mt-4 fa-lg"></i>
+        </a>
+        <h1 class="text-center mb-3">Nueva Lista</h1>
+        <div class="row">
+            <div class="col-6">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="name">
+            </div>
+            <div class="col-6">
+                <label for="desc" class="form-label">Descripcion</label>
+                <input type="text" class="form-control" name="desc" [(ngModel)]="desc">
+            </div>
+            <div class="col-6">
+                <label for="desc" class="form-label">Grupo</label>
+                <select class="form-select" name="desc" [(ngModel)]="selectedGroup">
+                    <option value="" selected disabled>Seleccione un grupo</option>
+                    @for (group of groupList; track $index) {
+                    <option [value]="group.Id">{{ group.Name }}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="desc" class="form-label">Tipo de lista</label>
+                <select class="form-select" name="desc" [(ngModel)]="selectedType">
+                    <option value="" selected disabled>Seleccione un tipo de lista</option>
+                    @for ( type of listTypes ; track $index) {
+                    <option [value]="type.value">{{ type.name }}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 mt-2">
+                <label for="userInput" class="form-label">Items</label>
+                <a id="btn-add" type="button" class="btn btn-primary m-3" (click)="addItem()">Crear
+                    Item</a>
+                <div class="row">
+                    @for (item of list.Items; track $index) {
+                    <div class="col-4">
+                        <div class="card shadow bg-body rounded m-2 p-2">
+                            <a class="text-decoration-none text-end" (click)="removeItem(item)">X</a>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" name="name" [(ngModel)]="item.Name">
+                                </div>
+                                <div class="col-4">
+                                    <label for="desc" class="form-label">Descripcion</label>
+                                    <input type="text" class="form-control" name="desc" [(ngModel)]="item.Desc">
+                                </div>
+                                <div class="col-4">
+                                    <label for="Quantity" class="form-label">Quantity or Price</label>
+                                    <input type="text" class="form-control" name="Quantity"
+                                        [(ngModel)]="item.Quantity">
+                                </div>
+                                <div class="col-12">
+                                    <label for="date" class="form-label">Fecha</label>
+                                    <input type="datetime-local" class="form-control" name="date"
+                                        [(ngModel)]="item.LimitDate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 justify-content-center d-flex">
+                <button type="submit" id="btn-submit" class="btn btn-primary m-3" (click)="create()">Crear
+                    lista</button>
+            </div>
+        </div>
+    </div>
+</div>
