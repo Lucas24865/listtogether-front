@@ -9,8 +9,7 @@ import { authGuard } from './guards/auth.guard';
 import { GroupAddComponent } from './components/groups/group-add/group-add.component';
 import { GroupEditComponent } from './components/groups/group-edit/group-edit.component';
 import { CreateComponent } from './components/lists/create/create.component';
-import { EditComponent } from './components/lists/edit/edit.component';
-import {LegalsComponent} from "./components/legals/legals.component";
+import { EditComponent } from './components/user/edit/edit.component';
 import {HelpComponent} from "./components/help/help.component";
 
 export const routes: Routes = [
@@ -40,6 +39,11 @@ export const routes: Routes = [
   {
     path: 'help',
     component: HelpComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'user/edit',
+    component: EditComponent,
     canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },

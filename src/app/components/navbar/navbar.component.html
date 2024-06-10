@@ -26,6 +26,9 @@
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <label ngbDropdownItem [disabled]="true">Usuario: {{user.User}}</label>
                     <label ngbDropdownItem [disabled]="true">Nombre: {{user.Name}}</label>
+                  <a href="/user/edit" class="text-decoration-none">
+                    <label ngbDropdownItem>Preferencias</label>
+                  </a>
                     <button ngbDropdownItem class="btn-danger" (click)="logout()">Logout</button>
                 </div>
             </div>

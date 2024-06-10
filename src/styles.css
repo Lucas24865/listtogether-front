@@ -23,3 +23,13 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-preview {
+  width: 15px;
+  height: 15px;
+  margin: auto;
+  display: inline-block;
+  border: 1px solid gray;
+  vertical-align: middle;
+  border-radius: 2px;
+}
