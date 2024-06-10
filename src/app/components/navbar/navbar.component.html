@@ -20,8 +20,6 @@
           <a class="nav-link" href="/groups" [class.active]="isActiveRoute('/groups')">Grupos</a>
         </li>
       </ul>
-      <app-notifications [notifications]="notifications"
-                         (messageEvent)="reloadNotifications($event)"></app-notifications>
       <div ngbDropdown class="d-flex align-items-center mx-2" ngbDropdownToggle>
         <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

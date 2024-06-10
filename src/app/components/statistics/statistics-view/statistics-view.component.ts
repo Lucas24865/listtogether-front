@@ -1,44 +1,215 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {AdminService} from '../../../services/admin.service';
 import Chart from 'chart.js/auto';
-import Masonry from 'masonry-layout';
+import Swal from "sweetalert2";
+import {IDashStats} from "../../../models/statsResponse";
+import {IDashGraphs} from "../../../models/graphsResponse";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-statistics-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './statistics-view.component.html',
   styleUrl: './statistics-view.component.css'
 })
 export class StatisticsViewComponent implements OnInit {
-  totalUsers: number = 10;
-  totalGroups: number = 3;
-  totalLists: number = 15;
-  totalElements: number = 5;
+  dashStats: IDashStats = {} as IDashStats
+  graphsData: IDashGraphs = {} as IDashGraphs
+  from:Date = {} as Date
+  to:Date = {} as Date
+  advancedChartsInited = false
+  usersChart: any
+  loginChart: any
+  groupsChart: any
+  listsChart: any
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private adminService: AdminService) {
+  }
+  ngOnInit(): void {
+    Swal.fire({
+      title: 'Cargando...',
+      text: 'Por favor espere',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+    this.adminService.getStats().subscribe((data) => {
+      this.dashStats = data.msg;
+      console.log(data.msg);
+      this.InitStatsGraphs();
+      Swal.close();
+    }, (error) => {
+      console.error(error);
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al cargar los datos',
+      });
+    });
   }
 
-  ngAfterViewInit(): void {
-    // const grid = new Masonry(this.elementRef.nativeElement.querySelector('.masonry'), {
-    //   itemSelector: '.col-12',
-    // });
+  searchData(){
+    Swal.fire({
+      title: 'Cargando...',
+      text: 'Por favor espere',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+    let from = new Date(this.from)
+    let to = new Date(this.to)
+
+    this.adminService.getGraphs({From:from.toISOString(), To:to.toISOString()}).subscribe((data) => {
+      console.log(data.msg);
+      this.graphsData = data.msg;
+      if (!this.advancedChartsInited){
+        this.InitAdvancedGraphs();
+      } else {
+        this.ReloadAdvancedGraphs();
+      }
+      Swal.close();
+    }, (error) => {
+      console.error(error);
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al cargar los datos',
+      });
+    });
   }
 
-  ngOnInit() {
-    const GenericData = {
-      labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+  InitStatsGraphs(){
+    const ListsTypeData = {
+      labels: ['Eventos', 'Compras', 'Cuentas', 'Notas', 'Recordatorios'],
       datasets: [{
-        label: 'Cantidad de Elementos Agregados',
-        data: [10, 20, 15, 25],
+        label: 'Tipos',
+        data: Object.values(this.dashStats.ListsTypes),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)', // Red
+          'rgba(54, 162, 235, 0.5)', // Blue
+          'rgba(255, 206, 86, 0.5)', // Yellow
+          'rgba(75, 192, 192, 0.5)', // Green
+          'rgba(153, 102, 255, 0.5)' // Purple
+        ]
+      }]
+    };
+    const elementTypesChart = document.getElementById('elementTypesChart') as HTMLCanvasElement;
+    new Chart(elementTypesChart, {
+      type: 'pie',
+      data: ListsTypeData,
+      options:{
+        layout: {
+          padding: {
+            left: -50,
+            right:-50
+          }
+        },
+        radius: "100%",
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top'
+          }
+        }
+      }
+    });
+    const ElementsTypeData = {
+      labels: ['Eventos', 'Compras', 'Cuentas', 'Notas', 'Recordatorios'],
+      datasets: [{
+        label: 'Tipos',
+        data: Object.values(this.dashStats.ElementsTypes),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)', // Red
+          'rgba(54, 162, 235, 0.5)', // Blue
+          'rgba(255, 206, 86, 0.5)', // Yellow
+          'rgba(75, 192, 192, 0.5)', // Green
+          'rgba(153, 102, 255, 0.5)' // Purple
+        ]
+      }]
+    };
+    const elementCountChart = document.getElementById('elementCountChart') as HTMLCanvasElement;
+    new Chart(elementCountChart, {
+      type: 'pie',
+      data: ElementsTypeData,
+      options:{
+        layout: {
+          padding: {
+            left: -50,
+            right:-50
+          }
+        },
+        radius: "100%",
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top'
+          }
+        }
+      }
+    });
+  }
+
+  ReloadAdvancedGraphs(){
+    this.refreshData(this.usersChart,Object.keys(this.graphsData.UsersCreated),Object.values(this.graphsData.UsersCreated))
+
+    this.refreshData(this.loginChart,Object.keys(this.graphsData.Logins),Object.values(this.graphsData.Logins))
+
+    this.refreshData(this.groupsChart,Object.keys(this.graphsData.GroupsCreated),Object.values(this.graphsData.GroupsCreated))
+
+    this.refreshData(this.listsChart,Object.keys(this.graphsData.ListsCreated),Object.values(this.graphsData.ListsCreated))
+
+  }
+
+  refreshData(chart: any, label: any, newData: any) {
+    chart.data.labels = label;
+    chart.data.datasets.forEach((dataset: any) => {
+      dataset.data = newData;
+    });
+    chart.update();
+  }
+  InitAdvancedGraphs(){
+    this.advancedChartsInited = true
+    const usersData = {
+      labels: Object.keys(this.graphsData.UsersCreated),
+      datasets: [{
+        label: 'Usuarios registrados',
+        data: Object.values(this.graphsData.UsersCreated),
         borderColor: 'blue',
         fill: false
       }]
     };
-    const ctx = document.getElementById('users') as HTMLCanvasElement;
-    new Chart(ctx, {
+    const usersCtx = document.getElementById('users') as HTMLCanvasElement;
+    this.usersChart = new Chart(usersCtx, {
       type: 'line',
-      data: GenericData,
+      data: usersData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    const loginsData = {
+      labels: Object.keys(this.graphsData.Logins),
+      datasets: [{
+        label: 'Inicios de sesión',
+        data: Object.values(this.graphsData.Logins),
+        borderColor: 'blue',
+        fill: false
+      }]
+    };
+    const loginsCtx = document.getElementById('logins') as HTMLCanvasElement;
+    this.loginChart = new Chart(loginsCtx, {
+      type: 'line',
+      data: loginsData,
       options: {
         scales: {
           y: {
@@ -48,10 +219,19 @@ export class StatisticsViewComponent implements OnInit {
       }
     });
 
-    const ctx1 = document.getElementById('logins') as HTMLCanvasElement;
-    new Chart(ctx1, {
+    const groupsData = {
+      labels: Object.keys(this.graphsData.GroupsCreated),
+      datasets: [{
+        label: 'Grupos creados',
+        data: Object.values(this.graphsData.GroupsCreated),
+        borderColor: 'blue',
+        fill: false
+      }]
+    };
+    const groupsCtx = document.getElementById('groupsCreated') as HTMLCanvasElement;
+    this.groupsChart = new Chart(groupsCtx, {
       type: 'line',
-      data: GenericData,
+      data: groupsData,
       options: {
         scales: {
           y: {
@@ -61,10 +241,19 @@ export class StatisticsViewComponent implements OnInit {
       }
     });
 
-    const ctx2 = document.getElementById('groupsCreated') as HTMLCanvasElement;
-    new Chart(ctx2, {
+    const listsData = {
+      labels: Object.keys(this.graphsData.ListsCreated),
+      datasets: [{
+        label: 'Listadas creadas',
+        data: Object.values(this.graphsData.ListsCreated),
+        borderColor: 'blue',
+        fill: false
+      }]
+    };
+    const listsCtx = document.getElementById('listsCreated') as HTMLCanvasElement;
+    this.listsChart =  new Chart(listsCtx, {
       type: 'line',
-      data: GenericData,
+      data: listsData,
       options: {
         scales: {
           y: {
@@ -74,21 +263,7 @@ export class StatisticsViewComponent implements OnInit {
       }
     });
 
-
-    const ctx3 = document.getElementById('listsCreated') as HTMLCanvasElement;
-    new Chart(ctx3, {
-      type: 'line',
-      data: GenericData,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-
-    const ctx4 = document.getElementById('elementsCreated') as HTMLCanvasElement;
+   /* const ctx4 = document.getElementById('elementsCreated') as HTMLCanvasElement;
     new Chart(ctx4, {
       type: 'line',
       data: GenericData,
@@ -99,56 +274,7 @@ export class StatisticsViewComponent implements OnInit {
           }
         }
       }
-    });
-
-    const chartTypeData = {
-      labels: ['Notas', 'Recordatorios', 'Eventos', 'Compras', 'Cuentas'],
-      datasets: [{
-        label: 'Tipos',
-        data: [10, 5, 8, 12, 7],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.5)', // Red
-          'rgba(54, 162, 235, 0.5)', // Blue
-          'rgba(255, 206, 86, 0.5)', // Yellow
-          'rgba(75, 192, 192, 0.5)', // Green
-          'rgba(153, 102, 255, 0.5)' // Purple
-        ]
-      }]
-    };
-
-    const elementTypesChart = document.getElementById('elementTypesChart') as HTMLCanvasElement;
-    new Chart(elementTypesChart, {
-      type: 'bar',
-      data: chartTypeData,
-      options: {
-        indexAxis: 'y',
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            stacked: true
-          }
-        }
-      }
-    });
-
-    const elementCountChart = document.getElementById('elementCountChart') as HTMLCanvasElement;
-    new Chart(elementCountChart, {
-      type: 'bar',
-      data: chartTypeData,
-      options: {
-        indexAxis: 'y',
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            stacked: true
-          }
-        }
-      }
-    });
+    });*/
 
   }
 }

@@ -1,42 +1,95 @@
-<div class="row justify-content-center align-items-center m-5">
-    <div class="col-8 col-md-7 card shadow bg-body rounded">
-        <a href="groups" class="text-decoration-none">
-            <i class="fa-solid fa-arrow-left mt-4 fa-lg"></i>
+<div class="row justify-content-center align-items-center m-lg-5 m-2 ">
+  <div class="col-lg-8 col-md-7 col-11 card shadow bg-body rounded p-0">
+    <div class="row m-0 card-header">
+      <div class="col-2 align-items-center d-flex justify-content-start p-0 m-0">
+        <a href="/src" class="text-decoration-none">
+          <i class="fa-solid fa-arrow-left fa-lg"></i>
         </a>
-        <h1 class="text-center mb-3">Editar grupo</h1>
-        <form (ngSubmit)="register()">
-            <div class="row">
-                <div class="col-6">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="group.Name">
-                </div>
-                <div class="col-6">
-                    <label for="desc" class="form-label">Descripcion</label>
-                    <input type="text" class="form-control" name="desc" [(ngModel)]="group.Desc">
-                </div>
-                <div class="col-12 mt-2">
-                    <div class="input-group mb-3">
-                        <input type="text" [(ngModel)]="userInput" class="form-control" name="userInput" placeholder="Agregar usuario por mail o nombre de usuario" 
-                        aria-label="Agregar usuario por mail o nombre de usuario" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  (click)="addUser()">Añadir</button>
-                      </div>
-
-                    <label for="users" class="form-label">Usuarios</label>
-                    <div class="d-flex align-items-around flex-wrap">
-                        
-                        @for (user of group.Users; track $index) {
-                            <div class="card shadow bg-body rounded m-2">
-                                {{ user }}
-                                <a class="text-decoration-none" (click)="removeUser(user)">X</a>
-                            </div>
-                            
-                        }
-                    </div>
-                </div>
-                <div class="col-12 justify-content-center d-flex">
-                    <button type="submit" id="btn-submit" class="btn btn-primary m-3">Editar</button>
-                </div>
-            </div>
-        </form>
+      </div>
+      <div class="col-8 align-items-center d-flex justify-content-center">
+        <h4 class="text-center align-middle mb-0">Editar</h4>
+      </div>
+      <div class="col-2">
+        <p> </p>
+      </div>
     </div>
+    <div class="row p-4 m-0" style="background: #dcdcdc52">
+      <div class="col-xl-6 col-sm-12">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="user.Name">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="desc" disabled [(ngModel)]="user.User">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" name="pass" [(ngModel)]="pass">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Correo</label>
+        <input type="text" class="form-control" name="desc" disabled [(ngModel)]="user.Mail">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Confirmar contraseña</label>
+        <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Color</label>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="red" value="red" checked>
+              <label class="form-check-label">
+                Rojo <span class="color-preview ms-1" style="background: red;"></span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="green" value="green" checked>
+              <label class="form-check-label">
+                Verde <span class="color-preview ms-1" style="background: green;"></span>
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="pink" value="pink">
+              <label class="form-check-label">
+                Rosa <span class="color-preview ms-1" style="background: pink;"></span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="black" value="black">
+              <label class="form-check-label">
+                Negro <span class="color-preview ms-1" style="background: black;"></span>
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="orange" value="orange">
+              <label class="form-check-label">
+                Naranja <span class="color-preview ms-1" style="background: orange;"></span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="color" [(ngModel)]="user.Color"
+                     id="blue" value="blue">
+              <label class="form-check-label">
+                Azul <span class="color-preview ms-1" style="background: blue;"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 justify-content-end d-flex">
+        <button type="submit" id="btn-submit" class="btn btn-success m-3" (click)="update()">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>

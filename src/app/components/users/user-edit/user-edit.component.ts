@@ -1,68 +1,29 @@
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import Swal from 'sweetalert2';
-import {GroupsService} from '../../../services/groups.service';
-import {IGroupRequest} from '../../../models/groupRequest';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {IUser} from "../../../models/user";
+import {UsersService} from "../../../services/users.service";
 
 @Component({
-  selector: 'app-group-edit',
+  selector: 'app-edit',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './user-edit.component.html',
-  styleUrl: './user-edit.component.css',
+  imports: [
+    FormsModule
+  ],
+  templateUrl: './edit.component.html',
+  styleUrl: './edit.component.css'
 })
-export class UserEditComponent {
-  userInput: string = '';
-  group: IGroupRequest = {} as IGroupRequest;
+export class EditComponent implements OnInit{
+  @Input() user: IUser = {} as IUser
+  pass: string = ""
+  passConf: string = ""
 
-  constructor(
-    private service: GroupsService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-  }
+  constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.service.getGroup(params['id']).subscribe((data) => {
-        this.group = data.msg;
-      });
-    });
+    this.user = JSON.parse(sessionStorage.getItem('user')!).msg as IUser;
   }
 
-  addUser() {
-    console.log(this.userInput);
-    this.group.Users.push(this.userInput);
-    this.userInput = '';
-  }
+  update(){
 
-  removeUser(userToRemove: string) {
-    const index = this.group.Users.indexOf(userToRemove);
-    if (index !== -1) {
-      this.group.Users.splice(index, 1);
-    }
-  }
-
-  register() {
-    this.service.editGroup(this.group).subscribe((data) => {
-      if (data.msg == 'success') {
-        Swal.fire({
-          title: 'Exito!',
-          text: 'El grupo se edito correctamente!',
-          footer: 'Si agregó usuarios se enviaron las solicitudes',
-          icon: 'success',
-        }).then(() => {
-          this.router.navigate(['/groups']);
-        });
-      } else {
-        console.log(data);
-        Swal.fire({
-          title: 'Error!',
-          text: 'Intente más tarde',
-          icon: 'error',
-        });
-      }
-    });
   }
 }

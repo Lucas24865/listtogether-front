@@ -5,8 +5,6 @@ import { MiniUserComponent } from '../utils/mini-user/mini-user.component';
 import { IUser } from '../../models/user';
 import { NgbDropdownModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { NotificationsService } from '../../services/notifications.service';
 import { INotification } from '../../models/notification';
 
 @Component({
@@ -19,7 +17,6 @@ import { INotification } from '../../models/notification';
     MiniUserComponent,
     NgbDropdownModule,
     NgbCollapse,
-    NotificationsComponent,
   ],
 })
 export class NavbarComponent implements OnInit {
@@ -31,7 +28,6 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private elementRef: ElementRef,
-    private notifService: NotificationsService
   ) {}
 
   ngOnInit() {
@@ -39,7 +35,6 @@ export class NavbarComponent implements OnInit {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.user = JSON.parse(sessionStorage.getItem('user')!).msg as IUser;
-          this.reloadNotifications(null);
         }
       });
     });
@@ -47,11 +42,6 @@ export class NavbarComponent implements OnInit {
     observer.observe(this.elementRef.nativeElement);
   }
 
-  reloadNotifications(event: any) {
-    this.notifService.getAll().subscribe((data) => {
-      this.notifications = data.msg;
-    });
-  }
 
   isActiveRoute(route: string): boolean {
     return this.router.url === route;
