@@ -1,24 +1,58 @@
 <div class="card shadow m-2 bg-body rounded">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <p>¿Cómo creo mi clave?
-      • ¿Cómo desbloqueo mi usuario?
-      • ¿A qué dirección de mail me puedo contactar para hacer una sugerencia o reclamo?
-      • ¿Cómo puedo pausar temporalmente mi suscripción?
-      • ¿Tienes alguna duda o quieres comunicarte con nosotros?
-      • ¿Cómo funciona ..........?
-      • ¿Qué necesito para ..........?
-      • ¿Qué medios de pago aceptan?</p>
-  </div>
-<div ngbAccordion>
-  <div ngbAccordionItem [collapsed]="false">
-    <h2 ngbAccordionHeader>
-      <button ngbAccordionButton>Terminos y Condiciones</button>
-    </h2>
-    <div ngbAccordionCollapse>
-      <div ngbAccordionBody>
-        <app-legals></app-legals>
+
+  <div ngbAccordion class="m-3">
+    <div ngbAccordionItem [collapsed]="true">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton>Preguntas frecuentes</button>
+      </h2>
+      <div ngbAccordionCollapse  style="background: aliceblue;">
+        <div ngbAccordionBody>
+          <div ngbAccordion class="m-3">
+            <div ngbAccordionItem [collapsed]="true">
+              <h2 ngbAccordionHeader>
+                <button ngbAccordionButton>¿Cómo cambio mi clave?</button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <p>Puedes cambiar tu clave desde preferencias clickeando en tu perfil</p>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem [collapsed]="true">
+              <h2 ngbAccordionHeader>
+                <button ngbAccordionButton>¿A qué dirección de mail me puedo contactar para hacer una sugerencia o reclamo?</button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <p>Puedes contactarte a <a href="mailto:lucasnicolasangel&#64;gmail.com">lucasnicolasangel&#64;gmail.com</a></p>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem [collapsed]="true">
+              <h2 ngbAccordionHeader>
+                <button ngbAccordionButton>¿Tienes alguna duda o quieres comunicarte con nosotros?</button>
+              </h2>
+              <div ngbAccordionCollapse >
+                <div ngbAccordionBody>
+                  <p>Puedes contactarte mediante correo al mencionado en el punto anterior</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div ngbAccordion class="m-3">
+    <div ngbAccordionItem [collapsed]="true">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton>Terminos y Condiciones</button>
+      </h2>
+      <div ngbAccordionCollapse  style="background: aliceblue;">
+        <div ngbAccordionBody>
+          <app-legals></app-legals>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
