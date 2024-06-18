@@ -12,7 +12,7 @@ import {UserService} from "../../../services/user.service";
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css'
 })
-export class EditComponent implements OnInit{
+export class UserEditComponent implements OnInit{
   user: IUser = {} as IUser
   pass: string = ""
   passConf: string = ""

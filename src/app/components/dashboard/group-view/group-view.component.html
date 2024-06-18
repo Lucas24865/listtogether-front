@@ -9,9 +9,16 @@
         <div class="card shadow mb-2 bg-body rounded me-2">
                 <div class="card-header align-items-center d-flex justify-content-between">
                     <h6 class="text-center align-middle mb-0">Filtros</h6>
-                    <button class="btn btn-danger" (click)="cleanFilters()">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    <div class="d-flex">
+                      <button class="btn btn-danger" (click)="cleanFilters()">
+                          <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <a href="/lists/new" class="d-block d-md-none mx-2">
+                        <button class="btn btn-success">
+                          <i class="fa-solid fa-plus"></i>
+                        </button>
+                      </a>
+                    </div>
                 </div>
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-center">
@@ -41,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="card shadow mb-2 bg-body rounded">
+        <div class="card shadow mb-2 bg-body rounded d-none d-md-block">
             <div class="card-body">
                 <a href="/lists/new">
                     <button class="btn btn-success">
@@ -57,27 +64,27 @@
         @switch (list.Type) {
             @case(enum.accounting){
                 <div class="col-md-4 col-xs-6">
-                    <app-accounts-short [list]="list"></app-accounts-short>
+                    <app-accounts-short [list]="list" (messageEvent)="exportToExcel($event)" ></app-accounts-short>
                 </div>
             }
             @case(enum.event){
                 <div class="col-md-4 col-xs-6">
-                    <app-events-short [list]="list"></app-events-short>
+                    <app-events-short [list]="list" (messageEvent)="exportToExcel($event)"></app-events-short>
                 </div>
             }
             @case(enum.shopping){
                 <div class="col-md-4 col-xs-6">
-                    <app-shopping-short [list]="list"></app-shopping-short>
+                    <app-shopping-short [list]="list" (messageEvent)="exportToExcel($event)"></app-shopping-short>
                 </div>
             }
             @case(enum.note){
                 <div class="col-md-4 col-xs-6">
-                    <app-notes-short [list]="list"></app-notes-short>
+                    <app-notes-short [list]="list" (messageEvent)="exportToExcel($event)"></app-notes-short>
                 </div>
             }
             @case(enum.reminder){
                 <div class="col-md-4 col-xs-6">
-                    <app-reminders-short [list]="list"></app-reminders-short>
+                    <app-reminders-short [list]="list" (messageEvent)="exportToExcel($event)"></app-reminders-short>
                 </div>
             }
         }

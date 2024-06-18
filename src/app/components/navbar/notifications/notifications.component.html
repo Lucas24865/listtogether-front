@@ -1,5 +1,5 @@
 <div ngbDropdown display="dynamic" class="d-flex align-items-center">
-    <div ngbDropdownToggle class="d-flex align-items-center justify-content-center">
+    <div ngbDropdownToggle class="d-flex align-items-center justify-content-center" (click)="reloadNotifications()">
     @if(false){
         <i class="fa-regular fa-bell fa-2x"></i>
     } @else {
@@ -7,7 +7,7 @@
     }
     </div>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        <div ngbDropdownItem (click)="deleteAll()">Borrar todas las leidas</div>
+        <div ngbDropdownItem (click)="deleteAll()" href="" class="pe-auto">Borrar todas las leidas</div>
         @for (notification of notifications; track $index) {
             @if (notification.Type == "new-group"){
                 <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>

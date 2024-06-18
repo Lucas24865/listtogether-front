@@ -22,6 +22,7 @@ export class NotificationsComponent {
 
   constructor(private notificationService: NotificationsService,config: NgbDropdownConfig) {
     config.autoClose = false;
+    config.placement = 'auto';
   }
   notificationResponse(event: INotificationMessage) {
     if (event.Accepted) {
@@ -44,6 +45,10 @@ export class NotificationsComponent {
   }
   deleteAll(){
     this.notificationService.deleteRead().subscribe((data) => {
+      this.messageEvent.emit('reload');
     })
+  }
+  reloadNotifications(){
+    this.messageEvent.emit('reload');
   }
 }

@@ -4,11 +4,12 @@ import {
   INotificationMessage,
 } from '../../../../models/notification';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import {CapitalizeFirstLetterPipe} from "../../../utils/pipes/capitalize-first-letter.pipe";
 
 @Component({
   selector: 'app-group-notification',
   standalone: true,
-  imports: [NgbDropdownModule],
+  imports: [NgbDropdownModule, CapitalizeFirstLetterPipe],
   templateUrl: './group-notification.component.html',
   styleUrl: './group-notification.component.css',
 })
@@ -24,6 +25,6 @@ export class GroupNotificationComponent {
     this.messageEvent.emit({ Accepted: false, Id: this.notification.Id });
   }
   delete(){
-    
+
   }
 }
