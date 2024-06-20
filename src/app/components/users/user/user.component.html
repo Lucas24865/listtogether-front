@@ -1,28 +1,41 @@
 <div class="card shadow mb-2 bg-body rounded">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <div>
-      <h6 class="mb-0">Usuario: {{ user.User }}</h6>
-      <label>Nombre: {{ user.Name }}</label> <br>
-      <label>Mail: {{ user.Mail }}</label> <br>
-      <label>Ultimo Login: {{ user.LastLogin }}</label> <br>
-      <label>Creado el: {{ user.CreatedAt }}</label>
-      <app-mini-user [users]="[user]" [doubleSized]="true"></app-mini-user>
-
+    <div class="card-header d-flex justify-content-between align-items-center"
+         style="background: rgba(238,238,238,0.6)">
+        <div>
+            <h6 class="mb-0">{{ user.User }}</h6>
+            <small>{{ user.Mail }}</small>
+        </div>
+        <app-mini-user [users]="[user]" [doubleSized]="true"></app-mini-user>
     </div>
-    <!--<a href="groups/edit/{{user.User}}">
-      <button class="btn btn-success">Edit</button>
-    </a>-->
-  </div>
-  <!--<div class="card-body">
-      <div class="row">
-          <div class="col-xl-3 col-6 group-details">
-              Admin:
-              <app-mini-user [users]="group.Admins" [doubleSized]="true"></app-mini-user>
-          </div>
-          <div class="col-xl-3 col-6 group-details">
-              Miembros:
-              <app-mini-user [users]="group.Members" [doubleSized]="true"></app-mini-user>
-          </div>
-      </div>
-  </div>-->
+    <div>
+        <div class="row m-0 p-0">
+            <div class="col-12 my-3">
+                <label>Nombre:</label>
+                <input class="form-control" [(ngModel)]="user.Name" disabled>
+            </div>
+            <div class="col-12 col-lg-6">
+                <label>Ultimo Login:</label>
+                <input class="form-control" [ngModel]="transformDate(user.LastLogin)" type="datetime-local" disabled>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <label>Creado el:</label>
+                <input class="form-control" [ngModel]="transformDate(user.CreatedAt)" type="datetime-local" disabled>
+            </div>
+        </div>
+        <!--<a href="groups/edit/{{user.User}}">
+          <button class="btn btn-success">Edit</button>
+        </a>-->
+    </div>
+    <!--<div class="card-body">
+        <div class="row">
+            <div class="col-xl-3 col-6 group-details">
+                Admin:
+                <app-mini-user [users]="group.Admins" [doubleSized]="true"></app-mini-user>
+            </div>
+            <div class="col-xl-3 col-6 group-details">
+                Miembros:
+                <app-mini-user [users]="group.Members" [doubleSized]="true"></app-mini-user>
+            </div>
+        </div>
+    </div>-->
 </div>

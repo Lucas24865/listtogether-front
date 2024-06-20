@@ -1,40 +1,42 @@
 <div class="d-flex align-items-center justify-content-center flex-column m-2 mt-xl-2">
-  <div class="d-flex align-items-center justify-content-center">
-    <div class="card shadow mb-2 bg-body rounded me-2">
-      <div class="card-header align-items-center d-flex justify-content-between">
-        <h6 class="text-center align-middle mb-0">Filtros</h6>
-        <button class="btn btn-danger" (click)="cleanFilters()">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="card-body">
-        <div class="d-flex align-items-center justify-content-center">
-          <div class="me-2">
-            <label class="form-label" >Nombre, usuario o mail:</label>
-            <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterList()"
-                   placeholder="Nombre, usuario o mail...">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row m-2 m-xl-5 mb-2">
-  @for (user of usersFiltered; track user) {
-    <div class="col-md-6 col-xs-12">
-      <app-group [user]="user"></app-group>
-    </div>
-  }
-</div>
-<!--
-<div class="row m-2 m-xl-5 mt-2 justify-content-center">
-    <div class="col-auto">
-        <div class="card shadow mb-2 bg-body rounded">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="card shadow mb-2 bg-body rounded me-2">
+            <div class="card-header align-items-center d-flex justify-content-between">
+                <h6 class="text-center align-middle mb-0">Filtros</h6>
+                <button class="btn btn-danger" (click)="cleanFilters()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
             <div class="card-body">
-                <a  href="/groups/new">
-                    <button class="btn btn-success">Crear nuevo grupo</button>
-                </a>
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="me-2">
+                        <label class="form-label">Nombre, usuario o mail:</label>
+                        <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterList()"
+                               placeholder="Nombre, usuario o mail...">
+                    </div>
+                    <div class="me-2">
+                        <label class="form-label">Cantidad de usuarios por página:</label>
+                        <input class="form-control" name="name" type="number" [(ngModel)]="pageSize" max="14"
+                               (ngModelChange)="filterList()">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>-->
+</div>
+<div class="row m-2 mx-xl-5 mb-2">
+    @for (user of pagedUsers; track user) {
+        <div class="col-md-6 col-xs-12">
+            <app-group [user]="user"></app-group>
+        </div>
+    }
+</div>
+<div class="d-flex justify-content-around align-items-center mt-2">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-secondary p-0 px-2">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-secondary p-0 px-2">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>

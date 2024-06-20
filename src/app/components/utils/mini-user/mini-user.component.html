@@ -1,15 +1,13 @@
-
-<div>
+<div class="d-flex">
     @for (user of users; track $index) {
         @if (user.Color !== "") {
-            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
-            [style.color]="user.Color"></i>
-        }
-        @else if (user.Picture !== "") {
-            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1"  data-bs-toggle="tooltip"
-            data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
-            [style.color]="user.Color"></i>
+            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1" data-bs-toggle="tooltip"
+               data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
+               [style.color]="user.Color"></i>
+        } @else if (user.Picture !== "") {
+            <i [ngClass]="{'fa-2x': doubleSized}" class="fa-solid fa-circle-user m-1" data-bs-toggle="tooltip"
+               data-bs-placement="bottom" ngbTooltip="{{ labeled ? user.Name : '' }}"
+               [style.color]="user.Color"></i>
         }
     }
 </div>

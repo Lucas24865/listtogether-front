@@ -8,22 +8,28 @@ import {authGuard} from './guards/auth.guard';
 import {GroupAddComponent} from './components/groups/group-add/group-add.component';
 import {GroupEditComponent} from './components/groups/group-edit/group-edit.component';
 import {UserViewComponent} from "./components/users/users-view/user-view.component";
+import {EditComponent} from "./components/users/edit/edit.component";
 
 export const routes: Routes = [
-  {path: '', component: MainComponent, canActivate: [authGuard]},
-  {path: 'users', component: UserViewComponent, canActivate: [authGuard]},
-  {path: 'groups', component: GroupsViewComponent, canActivate: [authGuard]},
-  {
-    path: 'groups/new',
-    component: GroupAddComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'groups/edit/:id',
-    component: GroupEditComponent,
-    canActivate: [authGuard],
-  },
-  {path: 'login', component: LoginComponent},
-  {path: 'forgot', component: ForgotComponent},
-  {path: 'register', component: RegisterComponent},
+    {path: '', component: MainComponent, canActivate: [authGuard]},
+    {path: 'users', component: UserViewComponent, canActivate: [authGuard]},
+    {path: 'groups', component: GroupsViewComponent, canActivate: [authGuard]},
+    {
+        path: 'groups/new',
+        component: GroupAddComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path: 'groups/edit/:id',
+        component: GroupEditComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path: 'user/edit',
+        component: EditComponent,
+        canActivate: [authGuard],
+    },
+    {path: 'login', component: LoginComponent},
+    {path: 'forgot', component: ForgotComponent},
+    {path: 'register', component: RegisterComponent},
 ];

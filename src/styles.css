@@ -1,25 +1,44 @@
 :root {
-    --danger: 230,55,87
+    --danger: 230, 55, 87
 }
 
-.collapsing{
-  transition: none !important;
+.collapsing {
+    transition: none !important;
 }
-.grid-item{
+
+.grid-item {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
+}
 
 body {
     background-color: #edf2f9;
 }
 
-.card{
+.card {
     border: 0;
 }
-.card-header{
+
+.card-header {
     border: 0;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.color-preview {
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    display: inline-block;
+    border: 1px solid gray;
+    vertical-align: middle;
+    border-radius: 2px;
+}
