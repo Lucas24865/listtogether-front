@@ -18,6 +18,7 @@ import {GenericComponent} from "../notification_types/generic/generic.component"
 })
 export class NotificationsComponent {
   @Input() notifications: INotification[] = [];
+  @Input() notRead: number = 0;
   @Output() messageEvent = new EventEmitter<string>();
 
   constructor(private notificationService: NotificationsService,config: NgbDropdownConfig) {
@@ -27,12 +28,10 @@ export class NotificationsComponent {
   notificationResponse(event: INotificationMessage) {
     if (event.Accepted) {
       this.notificationService.accept(event.Id).subscribe((data) => {
-        console.log(data);
         this.messageEvent.emit('reload');
       });
     } else {
       this.notificationService.decline(event.Id).subscribe((data) => {
-        console.log(data);
         this.messageEvent.emit('reload');
       });
     }

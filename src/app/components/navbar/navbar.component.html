@@ -1,10 +1,12 @@
 <!-- place navbar here -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
-        <img style="max-height: 50px;" class="me-2" src="/assets/logoCompleto.png">
+       <a href="/">
+           <img style="max-height: 50px;" class="me-2" src="/assets/logoCompleto.png">
+       </a>
         <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
@@ -18,7 +20,7 @@
                   <a class="nav-link" href="/help" [class.active]="isActiveRoute('/help')">Ayuda</a>
                 </li>
             </ul>
-            <app-notifications [notifications]="notifications" (messageEvent)="reloadNotifications($event)"></app-notifications>
+            <app-notifications [notifications]="notifications" [notRead] = "notRead" (messageEvent)="reloadNotifications($event)"></app-notifications>
             <div ngbDropdown class="d-flex align-items-center mx-2" display="dynamic">
                 <div ngbDropdownToggle class="d-flex align-items-center justify-content-center">
                     <app-mini-user [users]=[user] [doubleSized]="true" [labeled]="false"></app-mini-user>

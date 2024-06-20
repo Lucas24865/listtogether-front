@@ -25,9 +25,9 @@ import {filter} from "rxjs";
 })
 export class NavbarComponent implements OnInit {
   public isCollapsed: boolean = true;
-  currentRoute: string | null = null;
   user: IUser = {} as IUser;
   notifications: INotification[] = [];
+  notRead: number = 0;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
   reloadNotifications(event: any) {
     this.notifService.getAll().subscribe((data) => {
       this.notifications = data.msg;
-      console.log(data.msg)
+      this.notRead = this.notifications.filter(n => !n.Read).length
     });
   }
 

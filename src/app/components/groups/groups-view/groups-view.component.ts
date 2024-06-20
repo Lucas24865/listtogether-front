@@ -39,7 +39,6 @@ export class GroupsViewComponent {
       Swal.close();
     }, (error) => {
       console.error(error);
-      // Manejar el error y cerrar el spinner de carga
       Swal.close();
       Swal.fire({
         icon: 'error',

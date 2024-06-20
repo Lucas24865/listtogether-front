@@ -1,20 +1,28 @@
 <div ngbDropdown display="dynamic" class="d-flex align-items-center">
     <div ngbDropdownToggle class="d-flex align-items-center justify-content-center" (click)="reloadNotifications()">
-    @if(false){
-        <i class="fa-regular fa-bell fa-2x"></i>
-    } @else {
-        <i class="fa-solid fa-bell fa-2x"></i>
-    }
+        <div class="notification">
+            @if(notRead > 0){
+                <i class="fa-solid fa-bell fa-2x"></i>
+                <span class="badge">{{ notRead }}</span>
+            } @else {
+                <i class="fa-regular fa-bell fa-2x"></i>
+            }
+        </div>
     </div>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        <div ngbDropdownItem (click)="deleteAll()" href="" class="pe-auto">Borrar todas las leidas</div>
-        @for (notification of notifications; track $index) {
-            @if (notification.Type == "new-group"){
-                <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="pt-0">
+        @if (notifications.length > 0){
+            <div ngbDropdownItem (click)="deleteAll()" href="" class="pe-auto pt-2 rounded">Borrar todo</div>
+            <hr class="mt-0 mb-1">
+            @for (notification of notifications; track $index) {
+                @if (notification.Type == "new-group"){
+                    <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>
+                }
+                @if (notification.Type == "generic"){
+                    <app-generic [notification]="notification" ngbDropdownItem (messageEvent)="delete($event)"></app-generic>
+                }
             }
-            @if (notification.Type == "generic"){
-                <app-generic [notification]="notification" ngbDropdownItem (messageEvent)="delete($event)"></app-generic>
-            }
+        } @else {
+            <div ngbDropdownItem class="pe-auto pt-2 rounded">No hay notificaciones</div>
         }
     </div>
 </div>

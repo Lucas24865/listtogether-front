@@ -24,7 +24,7 @@
       </div>
       <div class="col-6">
         <label class="form-label">Contraseña</label>
-        <input type="password" class="form-control" name="pass" [(ngModel)]="pass">
+        <input type="password" class="form-control" name="pass" [(ngModel)]="pass" (ngModelChange)="checkPass()">
       </div>
       <div class="col-6">
         <label class="form-label">Correo</label>
@@ -32,7 +32,11 @@
       </div>
       <div class="col-6">
         <label class="form-label">Confirmar contraseña</label>
-        <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf">
+        <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf" (ngModelChange)="checkPassConf()">
+        <small class="text-danger" [class.d-none]="!passConfError">Las contraseñas no coinciden</small>
+          <small class="text-danger" [class.d-none]="!passErrorLength">Las contraseña debe tener minimo 8 caracteres<br></small>
+          <small class="text-danger" [class.d-none]="!passErrorUpper">Las contraseña debe tener por lo menos una mayúscula<br></small>
+          <small class="text-danger" [class.d-none]="!passErrorNumber">Las contraseña debe tener por lo menos una número</small>
       </div>
       <div class="col-6">
         <label class="form-label">Color</label>
@@ -88,7 +92,7 @@
         </div>
       </div>
       <div class="col-12 justify-content-end d-flex">
-        <button type="submit" id="btn-submit" class="btn btn-success m-3" (click)="update()">Guardar</button>
+        <button type="submit" id="btn-submit" class="btn btn-success m-3" (click)="update()" [class.disabled]="!sendEnabled">Guardar</button>
       </div>
     </div>
   </div>
