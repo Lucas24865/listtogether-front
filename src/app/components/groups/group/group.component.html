@@ -4,8 +4,8 @@
             <h6 class="mb-0">{{group.Name}}</h6>
             <small>{{group.Desc}}</small>
         </div>
-        <a href="groups/edit/{{group.Id}}">
-            <button class="btn btn-success" >Abrir</button>
+        <a [href]="isAdmin ? 'groups/edit/{{group.Id}}': null" [class.pe-none]="!isAdmin">
+            <button class="btn btn-success" [class.disabled]="!isAdmin" >Editar</button>
         </a>
     </div>
     <div class="card-body">

@@ -36,7 +36,7 @@
                     <input class="form-check-input me-1" type="checkbox" value=""
                         [checked]="item.Completed" style="pointer-events: none;">
                     <label [class.text-decoration-line-through]="item.Completed">{{item.Name}}</label>
-                    <app-mini-user [users]="[item.CreatedBy]"></app-mini-user>
+                    <app-mini-user [users]="[item.CompletedBy]"></app-mini-user>
                 </div>
                 @if (item.Desc != "") {
                     <div class="text-center">
@@ -47,7 +47,7 @@
                     <label>Cantidad: {{item.Quantity}}</label>
                 </div>
                 <div class="text-end">
-                    <app-mini-user [users]="[item.CompletedBy]"></app-mini-user>
+                    <app-mini-user [users]="[item.CreatedBy]"></app-mini-user>
                 </div>
             </li>
             }

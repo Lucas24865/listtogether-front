@@ -32,10 +32,10 @@
         <ul class="list-group">
             @for (account of pagedItems; track account){
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="d-flex ">
-                    <input class="form-check-input me-1" type="checkbox" [checked]="account.Completed"  style="pointer-events: none;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <input class="form-check-input me-1 mt-0" type="checkbox" [checked]="account.Completed"  style="pointer-events: none;">
                     <label [class.text-decoration-line-through]="account.Completed">{{ account.Name }}</label>
-                    <app-mini-user [users]="[account.CreatedBy]"></app-mini-user>
+                    <app-mini-user [users]="[account.CompletedBy]"></app-mini-user>
                 </div>
                 @if (account.Desc != "") {
                     <div class="text-center">
@@ -46,7 +46,7 @@
                     <label>{{ account.Quantity | formatMoney}}</label>
                 </div>
                 <div class="text-end">
-                    <app-mini-user [users]="[account.CompletedBy]"></app-mini-user>
+                  <app-mini-user [users]="[account.CreatedBy]"></app-mini-user>
                 </div>
             </li>
             }

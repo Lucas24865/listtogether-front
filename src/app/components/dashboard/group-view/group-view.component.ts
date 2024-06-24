@@ -55,8 +55,10 @@ export class GroupViewComponent implements OnInit {
     });
     this.listService.getAll().subscribe((data) => {
       this.lists = data.msg;
-      this.listsFiltered = [...this.lists]
-      this.getGroups();
+      if(this.lists != null) {
+        this.listsFiltered = [...this.lists]
+        this.getGroups();
+      }
       Swal.close();
     }, (error) => {
       console.error(error);

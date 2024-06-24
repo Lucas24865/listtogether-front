@@ -21,8 +21,10 @@ export class GroupAddComponent {
   constructor(private service: GroupsService, private router: Router) {}
 
   addUser() {
-    this.users.push(this.userInput);
-    this.userInput = '';
+    if (this.userInput != ''){
+      this.users.push(this.userInput);
+      this.userInput = '';
+    }
   }
 
   removeUser(userToRemove: string) {

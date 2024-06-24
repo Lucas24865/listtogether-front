@@ -33,9 +33,11 @@ export class GroupsViewComponent {
     });
     service.getGroups().subscribe((data) => {
       this.groups = data.msg
-      this.filteredGroups = [...this.groups]
-      this.totalPages = Math.ceil(this.filteredGroups.length / this.pageSize);
-      this.setPage(this.currentPage);
+      if(this.groups != null) {
+        this.filteredGroups = [...this.groups]
+        this.totalPages = Math.ceil(this.filteredGroups.length / this.pageSize);
+        this.setPage(this.currentPage);
+      }
       Swal.close();
     }, (error) => {
       console.error(error);
