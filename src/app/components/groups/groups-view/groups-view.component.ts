@@ -19,7 +19,7 @@ export class GroupsViewComponent {
     searchTerm: string = '';
     pagedGroups: IGroup[] = []
     currentPage: number = 1;
-    pageSize: number = 14;
+    pageSize: number = 8;
     totalPages: number = 1;
 
     constructor(private service: GroupsService) {
@@ -33,9 +33,11 @@ export class GroupsViewComponent {
         });
         service.getGroups().subscribe((data) => {
             this.groups = data.msg
+          if(this.groups != null) {
             this.groupsFiltered = [...this.groups]
             this.totalPages = Math.ceil(this.groupsFiltered.length / this.pageSize);
             this.setPage(this.currentPage);
+          }
             Swal.close();
         }, (error) => {
             console.error(error);

@@ -31,9 +31,10 @@ export class GroupEditComponent {
   }
 
   addUser() {
-    console.log(this.userInput);
-    this.group.Users.push(this.userInput);
-    this.userInput = '';
+    if (this.userInput != ""){
+      this.group.Users.push(this.userInput);
+      this.userInput = '';
+    }
   }
 
   removeUser(userToRemove: string) {

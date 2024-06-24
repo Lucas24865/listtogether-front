@@ -101,8 +101,9 @@ export class StatisticsViewComponent implements OnInit {
     }
 
     InitStatsGraphs() {
+      console.log(this.dashStats.ListsTypes)
         const ListsTypeData = {
-            labels: ['Eventos', 'Compras', 'Cuentas', 'Notas', 'Recordatorios'],
+            labels: ['Cuentas', 'Eventos', 'Notas', 'Recordatorios', 'Compras'],
             datasets: [{
                 label: 'Tipos',
                 data: Object.values(this.dashStats.ListsTypes),
@@ -136,7 +137,7 @@ export class StatisticsViewComponent implements OnInit {
             }
         });
         const ElementsTypeData = {
-            labels: ['Eventos', 'Compras', 'Cuentas', 'Notas', 'Recordatorios'],
+            labels: ['Cuentas', 'Eventos', 'Notas', 'Recordatorios', 'Compras'],
             datasets: [{
                 label: 'Tipos',
                 data: Object.values(this.dashStats.ElementsTypes),

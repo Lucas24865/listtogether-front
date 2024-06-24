@@ -19,7 +19,7 @@ export class UserViewComponent {
     nameFilter: string = '';
     pagedUsers: IUser[] = []
     currentPage: number = 1;
-    pageSize: number = 14;
+    pageSize: number = 8;
     totalPages: number = 1;
 
     constructor(private service: UsersService) {
