@@ -7,3 +7,11 @@ export interface IUser {
     Mail: string;
     CreatedAt: string;
   }
+
+export interface IUserRequest {
+    Name: string;
+    Color: string;
+    User:string;
+    OldPass: string;
+    NewPass: string;
+}
