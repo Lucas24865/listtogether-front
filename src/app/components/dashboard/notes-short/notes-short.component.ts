@@ -37,6 +37,9 @@ export class NotesShortComponent implements OnInit{
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedItems = this.filteredItems.slice(startIndex, endIndex);
+    if(this.pagedItems.length == 0){
+      this.currentPage = 0;
+    }
   }
 
   prevPage() {
@@ -74,6 +77,7 @@ export class NotesShortComponent implements OnInit{
   }
   cleanFilters(){
     this.nameFilter = ""
+    this.todayFilter = false
     this.filterItems()
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)

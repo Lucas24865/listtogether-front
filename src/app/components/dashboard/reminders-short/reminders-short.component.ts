@@ -15,6 +15,8 @@ export class RemindersShortComponent implements OnInit{
   @Input() list: IListResponse = {} as IListResponse;
   @Output() messageEvent = new EventEmitter<any>();
   nameFilter: string = ""
+  todayFilter: boolean = false;
+  noItems: boolean = false;
   filteredItems:IItemResponse[] = []
   pagedItems: IItemResponse[] = []
   currentPage: number = 1;
@@ -26,6 +28,7 @@ export class RemindersShortComponent implements OnInit{
     this.filteredItems =  [...this.list.Items]
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(this.currentPage);
+    this.filterItems()
   }
 
   setPage(page: number) {
@@ -33,6 +36,9 @@ export class RemindersShortComponent implements OnInit{
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedItems = this.filteredItems.slice(startIndex, endIndex);
+    if(this.pagedItems.length == 0){
+    this.currentPage = 0;
+    }
   }
 
   prevPage() {
@@ -47,15 +53,31 @@ export class RemindersShortComponent implements OnInit{
     }
   }
 
+  isToday(dateString: string): boolean {
+    const date = new Date(dateString);
+    const today = new Date();
+
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
   filterItems() {
     this.filteredItems = this.list.Items.filter(item => {
-      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase()))
+      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+        (!this.todayFilter || (this.isToday(item.LimitDate)))
+    }).sort((a, b) => {
+      return new Date(b.LimitDate).getTime() - new Date(a.LimitDate).getTime();
     });
+    console.log(this.filteredItems)
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)
   }
   cleanFilters(){
     this.nameFilter = ""
+    this.todayFilter = false
     this.filterItems()
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)

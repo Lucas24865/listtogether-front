@@ -132,13 +132,15 @@ function ListResponseToList(list: IListResponse): IList {
 
     let limitDatetransformed = ""
 
+
     if (item.LimitDate != undefined) {
       limitDatetransformed = new Date(item.LimitDate).toISOString();
     } else {
       limitDatetransformed = new Date().toISOString();
     }
+
     if (item.CreatedAt == undefined) {
-      limitDatetransformed = new Date().toISOString();
+      item.CreatedAt = new Date().toISOString();
     }
 
     listTransformed.Items.push({

@@ -34,6 +34,9 @@ export class ShoppingShortComponent implements OnInit{
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedItems = this.filteredItems.slice(startIndex, endIndex);
+    if(this.pagedItems.length == 0){
+      this.currentPage = 0;
+    }
   }
 
   prevPage() {

@@ -55,6 +55,9 @@ export class GroupsViewComponent {
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedGroups = this.filteredGroups.slice(startIndex, endIndex);
+    if(this.pagedGroups.length == 0){
+      this.currentPage = 0;
+    }
   }
   filterGroups() {
     this.filteredGroups = this.groups.filter(group => {

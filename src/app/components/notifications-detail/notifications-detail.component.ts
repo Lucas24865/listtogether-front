@@ -58,6 +58,7 @@ export class NotificationsDetailComponent implements OnInit{
   ngOnInit() {
     this.notifService.getAllWithDeleted().subscribe((data) => {
       this.notifications = data.msg;
+      console.log(data.msg)
       this.uniqueGroups = [...new Set(this.notifications.map((n) => n.Group).filter((group) => group))];
       this.uniqueUsers = [...new Set(this.notifications.map((n) => n.UserOwner).filter((user) => user))];
       this.uniqueLists = [...new Set(this.notifications.map((n) => n.ListName).filter((list) => list))];
@@ -81,6 +82,9 @@ export class NotificationsDetailComponent implements OnInit{
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedNotifications = this.filteredNotifications.slice(startIndex, endIndex);
+    if(this.pagedNotifications.length == 0){
+      this.currentPage = 0;
+    }
   }
 
   prevPage() {
