@@ -19,16 +19,23 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="d-flex align-items-center justify-content-around mb-2" [class.d-none] = !filtersVisible>
-          <div class="me-2">
-            <label class="form-label" >Nombre:</label>
+      <div [class.d-none] = !filtersVisible>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="me-2 d-flex">
+            <label class="form-label align-items-center d-flex mb-0 me-2" >Nombre:</label>
             <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterItems()"
                    placeholder="Nombre de la lista...">
+          </div>
+          <div class="me-2">
+            <label class="form-label m-0 me-2" >Hoy?:</label>
+            <input class="form-check-input me-1" type="checkbox" name="name" [(ngModel)]="todayFilter" (ngModelChange)="filterItems()">
           </div>
           <button class="btn btn-danger" (click)="cleanFilters()">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
+        <hr>
+      </div>
         <div class="list-group">
             @for (item of pagedItems; track $index) {
             <div class="list-group-item list-group-item-action">

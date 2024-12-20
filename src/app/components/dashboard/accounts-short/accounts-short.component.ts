@@ -16,6 +16,7 @@ export class AccountsShortComponent implements OnInit{
   @Input() list: IListResponse = {} as IListResponse;
   @Output() messageEvent = new EventEmitter<any>();
   nameFilter: string = ""
+  completeFilter: boolean = false;
   filteredItems:IItemResponse[] = []
   pagedItems: IItemResponse[] = []
   currentPage: number = 1;
@@ -50,13 +51,15 @@ export class AccountsShortComponent implements OnInit{
 
   filterItems() {
     this.filteredItems = this.list.Items.filter(item => {
-      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase()))
+      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+        (!this.completeFilter || (this.completeFilter && !item.Completed))
     });
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)
   }
   cleanFilters(){
     this.nameFilter = ""
+    this.completeFilter = false
     this.filterItems()
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)

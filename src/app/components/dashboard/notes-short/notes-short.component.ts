@@ -16,6 +16,7 @@ export class NotesShortComponent implements OnInit{
   @Input() list: IListResponse = {} as IListResponse;
   @Output() messageEvent = new EventEmitter<any>();
   nameFilter: string = ""
+  todayFilter: boolean = false;
   filteredItems:IItemResponse[] = []
   pagedItems: IItemResponse[] = []
   currentPage: number = 1;
@@ -24,7 +25,9 @@ export class NotesShortComponent implements OnInit{
   filtersVisible: boolean = false;
 
   ngOnInit() {
-    this.filteredItems =  [...this.list.Items]
+    this.filteredItems = [...this.list.Items].sort((a, b) => {
+    return new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime();
+  });
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(this.currentPage);
   }
@@ -48,9 +51,23 @@ export class NotesShortComponent implements OnInit{
     }
   }
 
+  isToday(dateString: string): boolean {
+    const date = new Date(dateString);
+    const today = new Date();
+
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
   filterItems() {
     this.filteredItems = this.list.Items.filter(item => {
-      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase()))
+      return (this.nameFilter == "" || item.Name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+        (!this.todayFilter || (this.isToday(item.CreatedAt)))
+    }).sort((a, b) => {
+      return new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime();
     });
     this.totalPages = Math.ceil(this.filteredItems.length / this.pageSize);
     this.setPage(1)

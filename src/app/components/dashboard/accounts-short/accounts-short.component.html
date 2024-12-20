@@ -19,16 +19,23 @@
       </div>
     </div>
     <div class="card-body">
-        <div class="d-flex align-items-center justify-content-around mb-2" [class.d-none] = !filtersVisible>
-          <div class="me-2">
-            <label class="form-label" >Nombre:</label>
+      <div [class.d-none] = !filtersVisible>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="me-2 d-flex">
+            <label class="form-label align-items-center d-flex me-2 mb-0" >Nombre:</label>
             <input class="form-control" name="name" [(ngModel)]="nameFilter" (ngModelChange)="filterItems()"
-                   placeholder="Nombre de la lista...">
+                   placeholder="Nombre del elemento...">
+          </div>
+          <div class="me-2">
+            <label class="form-label m-0 me-2" >Incompleto?:</label>
+            <input class="form-check-input me-1" type="checkbox" name="name" [(ngModel)]="completeFilter" (ngModelChange)="filterItems()">
           </div>
           <button class="btn btn-danger" (click)="cleanFilters()">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
+        <hr>
+      </div>
         <ul class="list-group">
             @for (account of pagedItems; track account){
             <li class="list-group-item d-flex justify-content-between align-items-center">
