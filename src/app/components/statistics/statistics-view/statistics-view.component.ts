@@ -310,7 +310,7 @@ export class StatisticsViewComponent implements OnInit {
         let from = new Date(this.from)
         let to = new Date(this.to)
 
-        const minDate = new Date();
+        const minDate = new Date(to);
         minDate.setDate(to.getDate() - this.maxDateDiffDays);
         this.minDate = minDate.toISOString().substring(0, 10)
 
@@ -319,4 +319,21 @@ export class StatisticsViewComponent implements OnInit {
         }
 
     }
+
+
+  updateTo() {
+    this.checkDates()
+
+    let from = new Date(this.from)
+    let to = new Date(this.to)
+
+    const maxDate = new Date(from);
+    maxDate.setDate(from.getDate() + this.maxDateDiffDays);
+    const maxDateText = maxDate.toISOString().substring(0, 10)
+
+    if (from > to || to > maxDate) {
+      this.to = maxDateText
+    }
+
+  }
 }

@@ -85,12 +85,12 @@
                     <div class="me-2">
                         <div>
                             <small>Desde:</small><input type="date" class="form-control" name="from" [(ngModel)]="from"
-                                                        [max]="to" [min]="minDate" (ngModelChange)="checkDates()">
+                                                        [max]="today" (ngModelChange)="updateTo()">
                         </div>
                     </div>
                     <div class="ps-1 me-2">
                         <small>Hasta:</small><input type="date" class="form-control" name="to" [(ngModel)]="to"
-                                                    [max]="today" (ngModelChange)="updateFrom()">
+                                                    [max]="today"  (ngModelChange)="updateFrom()">
                     </div>
                     <div>
                         <button class="btn btn-success" (click)="searchData()">
