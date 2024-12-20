@@ -1,0 +1,133 @@
+  <div class="container py-4">
+<div class="card mb-4">
+
+  <div class="card-header">
+    <h5>Filtros</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- Filtro por Mensaje -->
+      <div class="col-md-3">
+        <label for="messageFilter" class="form-label">Mensaje</label>
+        <input type="text" class="form-control" name="messageFilter" id="messageFilter" [(ngModel)]="filters.message" (ngModelChange)="filter()" placeholder="Mensaje...">
+      </div>
+      <!-- Filtro por Grupo -->
+      <div class="col-md-3">
+        <label for="groupFilter" class="form-label">Grupo</label>
+        <select
+          id="groupFilter"
+          class="form-select"
+          [(ngModel)]="filters.group"
+          (ngModelChange)="filter()"
+        >
+          <option value="">Todos</option>
+          <option *ngFor="let group of uniqueGroups" [value]="group">
+            {{ group }}
+          </option>
+        </select>
+      </div>
+      <!-- Filtro por Usuario -->
+      <div class="col-md-3">
+        <label for="userFilter" class="form-label">Usuario</label>
+        <select
+          id="userFilter"
+          class="form-select"
+          [(ngModel)]="filters.user"
+          (ngModelChange)="filter()"
+        >
+          <option value="">Todos</option>
+          <option *ngFor="let user of uniqueUsers" [value]="user">
+            {{ user }}
+          </option>
+        </select>
+      </div>
+      <!-- Filtro por Lista -->
+      <div class="col-md-3">
+        <label for="userFilter" class="form-label">Lista</label>
+        <select
+          id="listFilter"
+          class="form-select"
+          [(ngModel)]="filters.lists"
+          (ngModelChange)="filter()"
+        >
+          <option value="">Todos</option>
+          <option *ngFor="let user of uniqueLists" [value]="user">
+            {{ user }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <!-- Botón de Borrar Filtros -->
+    <div class="text-end mt-3">
+      <button class="btn btn-danger" (click)="resetFilters()">
+        <i class="bi bi-x-circle"></i> Borrar Filtros
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Card con la tabla -->
+<div class="card">
+  <div class="card-header">
+    <h5>Lista de Notificaciones</h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+      <tr>
+        <th>Grupo</th>
+        <th>Usuario</th>
+        <th>Lista</th>
+        <th>Mensaje</th>
+        <th>Detalle</th>
+        <th>Fecha</th>
+        <!--<th>Leido?</th>-->
+        <th>Eliminada?</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let notification of pagedNotifications; let i = index">
+        <td>{{ notification.Group }}</td>
+        <td>{{ notification.UserOwner }}</td>
+        <td>{{ notification.ListName }}</td>
+        <td>{{ notification.Message }}</td>
+        <td>{{ notification.Data }}</td>
+        <td>{{ notification.CreatedAt | date: 'short' }}</td>
+       <!-- <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-success': notification.Read,
+                  'bg-secondary': !notification.Read
+                }"
+              >
+                {{ notification.Read ? 'Leída' : 'No Leída' }}
+              </span>
+        </td>-->
+        <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-danger': notification.Deleted,
+                  'bg-secondary': !notification.Deleted
+                }"
+              >
+                {{ notification.Deleted ? 'Eliminada' : 'No Eliminada' }}
+              </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-around align-items-center mb-4">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-secondary p-0 px-2">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-secondary p-0 px-2">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</div>
+</div>

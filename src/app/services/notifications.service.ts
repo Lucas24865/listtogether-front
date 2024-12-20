@@ -12,6 +12,10 @@ export class NotificationsService {
     return this.http.get<any>(API_URL + 'notifications');
   }
 
+  getAllWithDeleted() {
+    return this.http.get<any>(API_URL + 'notifications/all');
+  }
+
   accept(id: string) {
     return this.http.put<any>(API_URL + 'notifications/accept/' + id, null);
   }

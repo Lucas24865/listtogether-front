@@ -12,6 +12,7 @@ import { CreateComponent } from './components/lists/create/create.component';
 import { UserEditComponent } from './components/user/edit/edit.component';
 import {EditComponent} from './components/lists/edit/edit.component';
 import {HelpComponent} from "./components/help/help.component";
+import {NotificationsDetailComponent} from "./components/notifications-detail/notifications-detail.component";
 
 export const routes: Routes = [
   { path: '', component: MainComponent, canActivate: [authGuard] },
@@ -45,6 +46,11 @@ export const routes: Routes = [
   {
     path: 'user/edit',
     component: UserEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'notifications',
+    component: NotificationsDetailComponent,
     canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },

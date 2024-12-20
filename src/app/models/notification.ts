@@ -1,7 +1,11 @@
 export interface INotification {
   Accepted: boolean;
   CreatedAt: Date;
-  Data: Date;
+  Data: string;
+  Detail: string;
+  Group: string;
+  UserOwner:string;
+  ListName:string;
   Deleted: boolean;
   Id: string;
   Message: string;

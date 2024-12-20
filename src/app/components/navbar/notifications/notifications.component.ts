@@ -42,13 +42,13 @@ export class NotificationsComponent {
     })
     this.notifications = this.notifications.filter(not => not.Id != id)
   }
+
   deleteAll(){
     this.notificationService.deleteRead().subscribe((data) => {
       this.messageEvent.emit('reload');
     })
   }
-  goToAll(){
-  }
+
   reloadNotifications(){
     this.messageEvent.emit('reload');
   }
