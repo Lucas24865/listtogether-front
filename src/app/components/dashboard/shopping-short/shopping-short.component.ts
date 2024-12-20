@@ -68,7 +68,7 @@ export class ShoppingShortComponent implements OnInit{
     let list: any[] = []
 
     for (let item of this.list.Items) {
-      list.push({"Titulo": item.Name,"Descripcion": item.Desc,"Cantidad:": item.Quantity,"Creador": item.CreatedBy.Name})
+      list.push({"Titulo": item.Name,"Descripcion": item.Desc,"Cantidad": item.Quantity,"Creador": item.CreatedBy.Name, "Completo?": item.Completed? "Si" : "No","Completado por": item.CompletedBy.Name})
     }
 
     this.messageEvent.emit({list:list, name: this.list.Name});

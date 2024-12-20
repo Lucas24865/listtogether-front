@@ -47,6 +47,8 @@ export class NotificationsComponent {
       this.messageEvent.emit('reload');
     })
   }
+  goToAll(){
+  }
   reloadNotifications(){
     this.messageEvent.emit('reload');
   }

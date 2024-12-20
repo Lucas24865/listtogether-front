@@ -13,7 +13,7 @@
         <p> </p>
       </div>
     </div>
-    <div class="row p-4 m-0" style="background: #dcdcdc52">
+    <div class="row p-4 m-0" >
       <div class="col-xl-6 col-sm-12">
         <label class="form-label">Nombre</label>
         <input type="text" class="form-control" name="name" [(ngModel)]="user.Name">
@@ -22,19 +22,19 @@
         <label class="form-label">Usuario</label>
         <input type="text" class="form-control" name="desc" disabled [(ngModel)]="user.User">
       </div>
-        <div class="col-6">
-            <label class="form-label">Contraseña actual:</label>
-            <input type="password" class="form-control" name="pass" [(ngModel)]="OldPass">
-        </div>
-      <div class="col-6">
+      <div class="col-6 pt-3">
+          <label class="form-label">Contraseña actual:</label>
+          <input type="password" class="form-control" name="pass" [(ngModel)]="OldPass">
+      </div>
+      <div class="col-6 pt-3">
         <label class="form-label">Contraseña nueva:</label>
         <input type="password" class="form-control" name="pass" [(ngModel)]="pass" (ngModelChange)="checkPass()">
       </div>
-      <div class="col-6">
+      <div class="col-6 pt-3">
         <label class="form-label">Correo</label>
         <input type="text" class="form-control" name="desc" disabled [(ngModel)]="user.Mail">
       </div>
-      <div class="col-6">
+      <div class="col-6 pt-3">
         <label class="form-label">Confirmar contraseña</label>
         <input type="password" class="form-control" name="passConf" [(ngModel)]="passConf" (ngModelChange)="checkPassConf()">
         <small class="text-danger" [class.d-none]="!passConfError">Las contraseñas no coinciden</small>
@@ -42,7 +42,7 @@
           <small class="text-danger" [class.d-none]="!passErrorUpper">Las contraseña debe tener por lo menos una mayúscula<br></small>
           <small class="text-danger" [class.d-none]="!passErrorNumber">Las contraseña debe tener por lo menos una número</small>
       </div>
-      <div class="col-12">
+      <div class="col-12 pt-3">
         <label class="form-label">Color</label>
         <div class="row justify-content-around">
           <div class="col-auto justify-content-around align-items-center d-flex">
@@ -103,7 +103,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 justify-content-end d-flex">
+      <div class="col-12 justify-content-end d-flex  pt-3">
         <button type="submit" id="btn-submit" class="btn btn-success m-3" (click)="update()" [class.disabled]="!sendEnabled">Guardar</button>
       </div>
     </div>

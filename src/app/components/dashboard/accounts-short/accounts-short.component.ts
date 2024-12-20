@@ -78,7 +78,7 @@ export class AccountsShortComponent implements OnInit{
 
       let numFormatted =  '$' + num.toFixed(2);
 
-      list.push({"Titulo": item.Name,"Descripcion": item.Desc,"Monto": numFormatted,"Creador": item.CreatedBy.Name})
+      list.push({"Titulo": item.Name,"Descripcion": item.Desc,"Monto": numFormatted,"Creador": item.CreatedBy.Name, "Completo?": item.Completed? "Si" : "No","Completado por": item.CompletedBy.Name})
     }
 
     this.messageEvent.emit({list:list, name: this.list.Name});

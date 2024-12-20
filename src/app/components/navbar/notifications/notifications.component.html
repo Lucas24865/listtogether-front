@@ -9,11 +9,12 @@
             }
         </div>
     </div>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="pt-0">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="py-0">
         @if (notifications.length > 0){
-            <div ngbDropdownItem (click)="deleteAll()" href="" class="pe-auto pt-2 rounded">Borrar todo</div>
+            <a href="" class="text-decoration-none"><div ngbDropdownItem (click)="deleteAll()" href="" class="pe-auto py-2 rounded">Borrar todo</div>
+            </a>
             <hr class="mt-0 mb-1">
-            @for (notification of notifications; track $index) {
+            @for (notification of notifications.slice(0, 5); track $index) {
                 @if (notification.Type == "new-group"){
                     <app-group-notification [notification]="notification" (messageEvent)="notificationResponse($event)" ngbDropdownItem></app-group-notification>
                 }
@@ -23,6 +24,11 @@
             }
         } @else {
             <div ngbDropdownItem class="pe-auto pt-2 rounded">No hay notificaciones</div>
+        }
+        @if (notifications.length > 5){
+          <hr class="my-0">
+          <a href="" class="text-decoration-none">
+          <div ngbDropdownItem (click)="goToAll()" href="" class="pe-auto py-2 rounded">Ir a detalles</div></a>
         }
     </div>
 </div>
